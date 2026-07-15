@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- Основные SEO-теги -->
+    <title>Знакомства Вписки Чат • Ночные встречи и тусы в твоём городе</title>
+    <meta name="description" content="Активный чат для реальных знакомств, вписок и ночных тус. Быстро находи компанию для встречи сегодня. Присоединяйся и общайся прямо сейчас!">
+    <meta name="keywords" content="знакомства, вписки, чат знакомств, ночные знакомства, туса сегодня, реальные встречи, вписон, чат для общения">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Вписон">
+    <link rel="canonical" href="https://твой-сайт.ru/"> <!-- ← Замени на реальный адрес -->
+
+    <!-- Open Graph (для соцсетей) -->
+    <meta property="og:title" content="Знакомства • Вписки • Чат">
+    <meta property="og:description" content="Активный чат для реальных знакомств и ночных тус. Присоединяйся и находи компанию уже сегодня!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://твой-сайт.ru/">
+    <meta property="og:image" content="https://твой-сайт.ru/background.jpg">
+    <meta property="og:site_name" content="Вписон">
+    <meta property="og:locale" content="ru_RU">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Знакомства Вписки Чат">
+    <meta name="twitter:description" content="Реальные встречи и тусы сегодня">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            background: #0a0a1f;
+            overflow-x: hidden;
+        }
+
+        .full-background {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.65)),
+                        url('full-background.jpg') center/cover no-repeat;
+            z-index: -3;
+        }
+
+        .city-overlay, .particles { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; 
+        }
+        
+        .particles {
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px),
+                        radial-gradient(circle, rgba(255,215,100,0.08) 1px, transparent 1px);
+            background-size: 80px 80px, 130px 130px;
+            animation: cityLights 40s linear infinite;
+        }
+        @keyframes cityLights { 
+            0% { background-position: 0 0, 50px 40px; } 
+            100% { background-position: 300px 250px, 200px 300px; } 
+        }
+
+        .content {
+            position: relative; z-index: 10; max-width: 900px; margin: 0 auto; padding: 20px; text-align: center;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 8vw, 4.5rem); 
+            font-weight: 700; 
+            line-height: 1.1; 
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #f0f0f0 0%, #d0d0d0 25%, #c0c0c0 40%, #d4af37 65%, #f0c040 85%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(255, 215, 100, 0.6), 0 0 45px rgba(212, 175, 55, 0.4), 0 4px 20px rgba(180, 140, 40, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .subtitle { 
+            font-size: clamp(1rem, 3vw, 1.55rem);
+            margin-bottom: 30px; opacity: 0.95; 
+        }
+
+        .main-image {
+            width: 100%; 
+            max-width: 820px; 
+            margin: 20px auto 40px;
+            border-radius: 20px; overflow: hidden;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.5), 0 30px 80px rgba(0,0,0,0.9);
+            display: block; 
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .description {
+            max-width: 720px; margin: 0 auto 40px; font-size: clamp(0.9rem, 2vw, 1.15rem); line-height: 1.6;
+            background: rgba(0,0,0,0.5); padding: 25px; border-radius: 16px;
+            backdrop-filter: blur(12px); border: 1px solid rgba(255,215,0,0.25);
+        }
+
+        .buttons { 
+            display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin: 30px 0 50px; 
+        }
+
+        .btn {
+            padding: 15px 30px; 
+            font-size: clamp(0.9rem, 3vw, 1.3rem);
+            font-weight: 600;
+            border-radius: 50px; text-decoration: none; transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            flex: 1 1 200px;
+            text-align: center;
+        }
+        .btn-chat { background: linear-gradient(90deg, #00aaff, #0077cc); color: #fff; }
+        .btn-bot  { background: linear-gradient(90deg, #ff44dd, #bb22aa); color: #fff; }
+        .btn:hover { transform: translateY(-8px) scale(1.05); }
+
+        footer { text-align: center; padding: 30px 10px; opacity: 0.7; font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            .logo-text { font-size: clamp(1.8rem, 7vw, 3.5rem); line-height: 1.2; }
+            .subtitle { font-size: 1rem; padding: 0 10px; }
+            .description { padding: 20px; font-size: 0.95rem; }
+            .phone-container { display: none; }
+            .main-image img { height: 280px; }
+        }
+
+        .phone-container {
+            position: fixed; top: 100px; right: 30px; width: 260px; z-index: 100;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .phone-frame {
+            width: 100%; padding: 12px; background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            border-radius: 52px; box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 0 14px #111,
+            inset 0 4px 15px rgba(255,255,255,0.08), 0 0 60px rgba(255,215,100,0.25);
+            transform: perspective(1200px) rotateY(-12deg) rotateX(8deg);
+        }
+        .phone-frame:hover { transform: perspective(1200px) rotateY(-8deg) rotateX(4deg); }
+        .phone-screen {
+            height: 480px; background: #0f1621; border-radius: 38px; overflow: hidden;
+            position: relative; border: 2px solid #222;
+        }
+        .telegram-header {
+            background: #1e2736; padding: 10px 14px; display: flex; align-items: center;
+            gap: 8px; font-size: 14px; color: white;
+        }
+        .chat-messages {
+            height: calc(100% - 52px); padding: 14px; overflow-y: auto;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4));
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .message {
+            max-width: 82%; padding: 9px 13px; border-radius: 16px;
+            font-size: 13.5px; line-height: 1.35;
+        }
+        .message.me { align-self: flex-end; background: #2a9eff; border-bottom-right-radius: 4px; color: white; }
+        .message.them { align-self: flex-start; background: #1e2736; border-bottom-left-radius: 4px; }
+        .message-time { font-size: 10px; opacity: 0.75; margin-top: 3px; display: block; }
+    </style>
+</head>
+<body>
+    <div class="full-background"></div>
+    <div class="city-overlay"></div>
+    <div class="particles"></div>
+
+    <div class="content">
+        <h1 class="logo-text">Знакомства<br>Вписки<br>Чат</h1>
+        <p class="subtitle">🔥 Ночной город ждёт твоих новых знакомств 🔥</p>
+
+        <div class="main-image">
+            <img src="background.jpg" alt="Ночной город с людьми на тусовке">
+        </div>
+
+        <div class="description">
+            Этот чат создан для знакомств и живого общения. Вы быстро убедитесь, насколько легко здесь познакомиться — достаточно просто вступить в диалог. Найти реальную встречу тоже очень просто: достаточно опубликовать свой пост. Не расстраивайтесь, если сразу не ответят — далеко не все сидят в чате 24/7. Активные участники встречаются довольно часто: знакомства здесь идут плотно, и на этой волне регулярно назначаются оффлайн-встречи. Кроме того, в чате часто организуются большие вписки. Желаю удачи и хороших знакомств!
+
+
+        </div>
+
+        <div class="buttons">
+            <a href="https://t.me/+RmODa8JRsutmMmQ6" target="_blank" class="btn btn-chat">🚀 Перейти в чат</a>
+            <a href="https://t.me/vpisochka112_bot" target="_blank" class="btn btn-bot">🤖 Наш бот</a>
+        </div>
+    </div>
+
+    <footer>© 2025 • Только для тех, кто ищет настоящие эмоции</footer>
+
+    <div class="phone-container" id="phone">
+        <div class="phone-frame">
+            <div class="phone-screen">
+                <div class="telegram-header">
+                    <span>←</span>
+                    <div style="flex:1; font-weight:600;">Вписон</div>
+                    <span>•••</span>
+                </div>
+                <div class="chat-messages" id="chat">
+                    <div class="message them">Привет, кто сегодня в городе? 😏<span class="message-time">22:41</span></div>
+                    <div class="message me">Только что приехал, ищу компанию на вписочку<span class="message-time">22:42</span></div>
+                    <div class="message them">У нас большая туса на районе, присоединяйся 😉<br>Адрес скину в личку<span class="message-time">22:43</span></div>
+                    <div class="message me">Ого, звучит круто! Еду 🔥<span class="message-time">22:44</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Структурированные данные для SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Знакомства • Вписки • Чат",
+      "url": "https://твой-сайт.ru/",
+      "description": "Активный чат для реальных знакомств, вписок и ночных встреч"
+    }
+    </script>
+
+    <script>
+        const phone = document.getElementById('phone');
+        let lastScroll = 0;
+
+        if (phone) {
+            window.addEventListener('scroll', () => {
+                const scroll = window.scrollY;
+                if (scroll > lastScroll && scroll > 200) {
+                    phone.style.transform = 'translateY(50px) perspective(1200px) rotateY(-12deg) rotateX(8deg)';
+                } else {
+                    phone.style.transform = 'translateY(0) perspective(1200px) rotateY(-12deg) rotateX(8deg)';
+                }
+                lastScroll = scroll;
+            });
+        }
+
+        setTimeout(() => {
+            const chat = document.getElementById('chat');
+            if (chat) {
+                const newMsg = document.createElement('div');
+                newMsg.className = 'message them';
+                newMsg.innerHTML = 'Кто ещё свободен сегодня ночью? 👀<span class="message-time">22:46</span>';
+                chat.appendChild(newMsg);
+                chat.scrollTop = chat.scrollHeight;
+            }
+        }, 2800);
+    </script>
+</body>
+</html>
