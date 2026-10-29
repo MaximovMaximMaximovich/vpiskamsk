@@ -13,7 +13,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- Preload критичных фонов (главное исправление) -->
+    <!-- Preload критичных фонов -->
     <link rel="preload" href="full-background.jpg" as="image" fetchpriority="high">
     <link rel="preload" href="background.jpg" as="image" fetchpriority="high">
 
@@ -37,7 +37,7 @@
     <meta name="twitter:title" content="Знакомства Вписки Чат">
     <meta name="twitter:description" content="Реальные встречи и тусы сегодня">
 
-    <!-- Шрифты (без @import — не блокирует рендер) -->
+    <!-- Шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -53,9 +53,11 @@
             overflow-x: hidden;
         }
 
+        /* ===== ЗАДНИЙ ФОН (исправлено) ===== */
         .full-background {
             position: fixed;
-            inset: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             z-index: -3;
@@ -63,13 +65,14 @@
             background-image: 
                 linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.65)),
                 url('full-background.jpg');
-            background-position: center;
+            background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;
-            will-change: transform;
+            /* will-change убран — он вызывал исчезновение фона */
         }
 
-        .city-overlay, .particles { 
+        .city-overlay, 
+        .particles { 
             position: fixed; 
             top: 0; 
             left: 0; 
@@ -88,7 +91,7 @@
         }
 
         @keyframes cityLights { 
-            0% { background-position: 0 0, 50px 40px; } 
+            0%   { background-position: 0 0, 50px 40px; } 
             100% { background-position: 300px 250px, 200px 300px; } 
         }
 
@@ -112,7 +115,6 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 25px rgba(255, 215, 100, 0.6), 0 0 45px rgba(212, 175, 55, 0.4), 0 4px 20px rgba(180, 140, 40, 0.3);
-            transition: all 0.4s ease;
         }
 
         .subtitle { 
@@ -164,7 +166,7 @@
             font-weight: 600;
             border-radius: 50px; 
             text-decoration: none; 
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
             flex: 1 1 200px;
             text-align: center;
@@ -172,7 +174,7 @@
         .btn-chat { background: linear-gradient(90deg, #00aaff, #0077cc); color: #fff; }
         .btn-bot  { background: linear-gradient(90deg, #ff44dd, #bb22aa); color: #fff; }
         .btn-wait { background: linear-gradient(90deg, #ffaa00, #ff7700); color: #fff; }
-        .btn:hover { transform: translateY(-8px) scale(1.05); }
+        .btn:hover { transform: translateY(-6px) scale(1.04); }
 
         footer { 
             text-align: center; 
@@ -185,31 +187,36 @@
             .logo-text { font-size: clamp(1.8rem, 7vw, 3.5rem); line-height: 1.2; }
             .subtitle { font-size: 1rem; padding: 0 10px; }
             .description { padding: 20px; font-size: 0.95rem; }
-            .phone-container { display: none; }
+            .phone-container { display: none !important; }
             .main-image img { height: 280px; }
         }
 
+        /* ===== ТЕЛЕФОН ===== */
         .phone-container {
             position: fixed; 
             top: 100px; 
             right: 30px; 
             width: 260px; 
             z-index: 100;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform;
+            transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
             contain: layout paint;
-            transform: translateZ(0);
         }
         .phone-frame {
             width: 100%; 
             padding: 12px; 
             background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
             border-radius: 52px; 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 0 14px #111,
-            inset 0 4px 15px rgba(255,255,255,0.08), 0 0 60px rgba(255,215,100,0.25);
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.8), 
+                0 0 0 14px #111,
+                inset 0 4px 15px rgba(255,255,255,0.08), 
+                0 0 60px rgba(255,215,100,0.25);
             transform: perspective(1200px) rotateY(-12deg) rotateX(8deg);
+            transition: transform 0.4s ease;
         }
-        .phone-frame:hover { transform: perspective(1200px) rotateY(-8deg) rotateX(4deg); }
+        .phone-frame:hover { 
+            transform: perspective(1200px) rotateY(-8deg) rotateX(4deg); 
+        }
         .phone-screen {
             height: 480px; 
             background: #0f1621; 
@@ -350,9 +357,9 @@
             window.addEventListener('scroll', () => {
                 const scroll = window.scrollY;
                 if (scroll > lastScroll && scroll > 200) {
-                    phone.style.transform = 'translateY(50px) perspective(1200px) rotateY(-12deg) rotateX(8deg)';
+                    phone.style.transform = 'translateY(50px)';
                 } else {
-                    phone.style.transform = 'translateY(0) perspective(1200px) rotateY(-12deg) rotateX(8deg)';
+                    phone.style.transform = 'translateY(0)';
                 }
                 lastScroll = scroll;
             }, { passive: true });
