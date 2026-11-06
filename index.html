@@ -12,9 +12,6 @@
     <!-- Yandex verification -->
     <meta name="yandex-verification" content="a9e9d087112b8acc" />
 
-    <!-- Preload только критичного фона (самый важный для LCP) -->
-    <link rel="preload" href="full-background.jpg" as="image" fetchpriority="high">
-   
     <!-- SEO -->
     <title>Знакомства Вписки Чат Москва • Реальные встречи и ночные тусы</title>
     <meta name="description" content="Активный чат для реальных знакомств, вписок и ночных тус в Москве. Быстро находи компанию для тусовки сегодня. Присоединяйся и общайся прямо сейчас!">
@@ -63,41 +60,60 @@
             line-height: 1.5;
         }
 
-        /* ===== ФОН ===== */
+        /* ===== ЧИСТЫЙ CSS-ФОН: ночной двор ===== */
         .full-background {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
             z-index: -3;
-            background-color: #0a0a1f;
-            background-image: 
-                linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.75) 100%),
-                url('full-background.jpg');
-            background-position: center center;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-
-        .city-overlay, .particles { 
-            position: fixed; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%; 
-            z-index: -2; 
-            pointer-events: none; 
-        }
-        
-        .particles {
             background: 
-                radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px),
-                radial-gradient(circle, rgba(255,215,100,0.09) 1px, transparent 1px);
-            background-size: 70px 70px, 120px 120px;
-            animation: cityLights 45s linear infinite;
-            opacity: 0.85;
+                /* тёмный градиент неба */
+                linear-gradient(180deg, 
+                    #050510 0%, 
+                    #0a0a1f 25%, 
+                    #12122b 55%, 
+                    #1a1520 80%, 
+                    #0d0a12 100%);
         }
 
-        @keyframes cityLights { 
-            0%   { background-position: 0 0, 40px 30px; } 
-            100% { background-position: 280px 220px, 180px 260px; } 
+        /* тёплые огни двора + боке */
+        .city-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -2;
+            pointer-events: none;
+            background: 
+                /* крупные тёплые пятна света (как от фонарей и окон) */
+                radial-gradient(ellipse 80% 50% at 20% 70%, rgba(255, 160, 50, 0.18) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 75% 65%, rgba(255, 120, 40, 0.14) 0%, transparent 55%),
+                radial-gradient(ellipse 50% 35% at 50% 80%, rgba(200, 100, 30, 0.12) 0%, transparent 50%),
+                /* холодный верх */
+                radial-gradient(ellipse 100% 60% at 50% 0%, rgba(40, 60, 120, 0.25) 0%, transparent 70%);
+        }
+
+        .particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background: 
+                /* мелкие огоньки / боке */
+                radial-gradient(circle at 15% 60%, rgba(255, 200, 100, 0.35) 0%, transparent 2px),
+                radial-gradient(circle at 28% 72%, rgba(255, 180, 80, 0.25) 0%, transparent 1.5px),
+                radial-gradient(circle at 42% 55%, rgba(255, 220, 140, 0.3) 0%, transparent 2px),
+                radial-gradient(circle at 60% 68%, rgba(255, 160, 60, 0.22) 0%, transparent 1.8px),
+                radial-gradient(circle at 78% 58%, rgba(255, 200, 100, 0.28) 0%, transparent 2px),
+                radial-gradient(circle at 88% 75%, rgba(255, 170, 70, 0.2) 0%, transparent 1.5px),
+                radial-gradient(circle at 10% 40%, rgba(255, 255, 255, 0.08) 0%, transparent 1px),
+                radial-gradient(circle at 90% 30%, rgba(255, 255, 255, 0.06) 0%, transparent 1px);
+            animation: lightsPulse 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes lightsPulse {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
         }
 
         /* ===== КОНТЕНТ ===== */
@@ -126,19 +142,50 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ЛОГО */
+        /* ЛОГО В СТЕКЛЯННОМ ОКЕ */
+        .logo-window {
+            display: inline-block;
+            padding: 28px 40px 32px;
+            margin-bottom: 22px;
+            background: rgba(10, 10, 25, 0.55);
+            border: 1px solid rgba(255, 215, 100, 0.28);
+            border-radius: 24px;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(255, 200, 80, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            animation: windowFloat 7s ease-in-out infinite;
+            position: relative;
+        }
+
+        .logo-window::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 50%, rgba(255,215,100,0.04) 100%);
+            pointer-events: none;
+        }
+
+        @keyframes windowFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
         .logo-text {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.4rem, 9vw, 5rem); 
+            font-size: clamp(2.3rem, 8.5vw, 4.6rem); 
             font-weight: 700; 
-            line-height: 1.05; 
-            margin-bottom: 18px;
-            background: linear-gradient(120deg, #f8f8f8 0%, #e0e0e0 20%, #d4af37 55%, #ffd700 80%, #fff3a0 100%);
+            line-height: 1.08; 
+            background: linear-gradient(120deg, #f8f8f8 0%, #e8e8e8 18%, #d4af37 50%, #ffd700 78%, #fff3a0 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 28px rgba(255, 215, 100, 0.55));
+            filter: drop-shadow(0 0 22px rgba(255, 215, 100, 0.5));
             letter-spacing: -0.5px;
+            position: relative;
         }
 
         .subtitle { 
@@ -408,7 +455,9 @@
     <div class="particles"></div>
 
     <div class="content">
-        <h1 class="logo-text fade-up">Знакомства<br>Вписки<br>Чат</h1>
+        <div class="logo-window fade-up">
+            <h1 class="logo-text">Знакомства<br>Вписон<br>Чат</h1>
+        </div>
         <p class="subtitle fade-up delay-1">🔥 Ночной город ждёт твоих новых знакомств 🔥</p>
 
         <div class="live-status fade-up delay-2">
