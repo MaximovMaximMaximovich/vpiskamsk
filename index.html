@@ -306,17 +306,18 @@
             border-radius: 50px; 
             text-decoration: none; 
             transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.5);
             flex: 1 1 200px;
             text-align: center;
             overflow: hidden;
-            border: 1px solid transparent;
+            border: 1px solid rgba(255, 215, 0, 0.18);
+            color: #f5f5f5;
+            letter-spacing: 0.2px;
         }
         .btn::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.15), transparent);
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
             transform: translateX(-100%);
             transition: transform 0.6s ease;
         }
@@ -324,34 +325,56 @@
             transform: translateX(100%);
         }
         .btn:hover { 
-            transform: translateY(-7px) scale(1.03); 
+            transform: translateY(-6px); 
+            border-color: rgba(255, 215, 0, 0.35);
         }
 
+        /* Глубокий синий */
         .btn-chat { 
-            background: linear-gradient(135deg, #00b4ff, #0077cc); 
-            color: #fff;
-            box-shadow: 0 12px 30px rgba(0,120,255,0.35);
+            background: linear-gradient(145deg, #1a3a5c 0%, #0f2a45 50%, #0a1f35 100%);
+            box-shadow: 
+                0 10px 28px rgba(0, 0, 0, 0.45),
+                0 0 0 1px rgba(100, 160, 220, 0.12),
+                inset 0 1px 0 rgba(255,255,255,0.06);
         }
         .btn-chat:hover {
-            box-shadow: 0 16px 40px rgba(0,140,255,0.5);
+            background: linear-gradient(145deg, #214868 0%, #153552 50%, #0f2a42 100%);
+            box-shadow: 
+                0 14px 36px rgba(0, 0, 0, 0.5),
+                0 0 24px rgba(80, 150, 220, 0.18),
+                inset 0 1px 0 rgba(255,255,255,0.08);
         }
 
+        /* Тёмный сливовый */
         .btn-bot  { 
-            background: linear-gradient(135deg, #ff4de6, #c41a9e); 
-            color: #fff;
-            box-shadow: 0 12px 30px rgba(255,60,200,0.3);
+            background: linear-gradient(145deg, #3d1f3a 0%, #2a1528 50%, #1e0f1c 100%);
+            box-shadow: 
+                0 10px 28px rgba(0, 0, 0, 0.45),
+                0 0 0 1px rgba(180, 100, 160, 0.12),
+                inset 0 1px 0 rgba(255,255,255,0.05);
         }
         .btn-bot:hover {
-            box-shadow: 0 16px 40px rgba(255,70,210,0.45);
+            background: linear-gradient(145deg, #4a2646 0%, #341a31 50%, #261422 100%);
+            box-shadow: 
+                0 14px 36px rgba(0, 0, 0, 0.5),
+                0 0 24px rgba(160, 80, 140, 0.18),
+                inset 0 1px 0 rgba(255,255,255,0.07);
         }
 
+        /* Тёплый тёмно-янтарный */
         .btn-wait { 
-            background: linear-gradient(135deg, #ffb000, #ff6a00); 
-            color: #fff;
-            box-shadow: 0 12px 30px rgba(255,140,0,0.3);
+            background: linear-gradient(145deg, #4a3218 0%, #352412 50%, #261a0c 100%);
+            box-shadow: 
+                0 10px 28px rgba(0, 0, 0, 0.45),
+                0 0 0 1px rgba(200, 150, 60, 0.15),
+                inset 0 1px 0 rgba(255,255,255,0.05);
         }
         .btn-wait:hover {
-            box-shadow: 0 16px 40px rgba(255,150,0,0.45);
+            background: linear-gradient(145deg, #5a3e20 0%, #422c16 50%, #30220f 100%);
+            box-shadow: 
+                0 14px 36px rgba(0, 0, 0, 0.5),
+                0 0 24px rgba(200, 150, 60, 0.2),
+                inset 0 1px 0 rgba(255,255,255,0.07);
         }
 
         /* ФУТЕР */
