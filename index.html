@@ -362,94 +362,8 @@
             font-size: 0.88rem; 
         }
 
-        /* ===== ТЕЛЕФОН ===== */
-        .phone-container {
-            position: fixed; 
-            top: 90px; 
-            right: 28px; 
-            width: 250px; 
-            z-index: 100;
-            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-            contain: layout paint;
-        }
-        .phone-frame {
-            width: 100%; 
-            padding: 11px; 
-            background: linear-gradient(145deg, #1c1c1c, #0d0d0d);
-            border-radius: 48px; 
-            box-shadow: 
-                0 25px 55px rgba(0,0,0,0.85), 
-                0 0 0 12px #111,
-                inset 0 3px 12px rgba(255,255,255,0.07), 
-                0 0 50px rgba(255,215,100,0.22);
-            transform: perspective(1100px) rotateY(-11deg) rotateX(7deg);
-            transition: transform 0.45s ease;
-        }
-        .phone-frame:hover { 
-            transform: perspective(1100px) rotateY(-6deg) rotateX(3deg); 
-        }
-        .phone-screen {
-            height: 460px; 
-            background: #0c121b; 
-            border-radius: 36px; 
-            overflow: hidden;
-            position: relative; 
-            border: 1.5px solid #1a1a1a;
-        }
-        .telegram-header {
-            background: #17212b; 
-            padding: 11px 14px; 
-            display: flex; 
-            align-items: center;
-            gap: 8px; 
-            font-size: 13.5px; 
-            color: white;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .chat-messages {
-            height: calc(100% - 50px); 
-            padding: 14px; 
-            overflow-y: auto;
-            background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35));
-            display: flex; 
-            flex-direction: column; 
-            gap: 11px;
-            scrollbar-width: none;
-        }
-        .chat-messages::-webkit-scrollbar { display: none; }
-        .message {
-            max-width: 84%; 
-            padding: 9px 13px; 
-            border-radius: 16px;
-            font-size: 13.2px; 
-            line-height: 1.35;
-            animation: msgIn 0.4s ease;
-        }
-        @keyframes msgIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .message.me { 
-            align-self: flex-end; 
-            background: #2b9eff; 
-            border-bottom-right-radius: 4px; 
-            color: white; 
-        }
-        .message.them { 
-            align-self: flex-start; 
-            background: #182533; 
-            border-bottom-left-radius: 4px; 
-        }
-        .message-time { 
-            font-size: 10px; 
-            opacity: 0.7; 
-            margin-top: 3px; 
-            display: block; 
-        }
-
         /* МОБИЛКА */
         @media (max-width: 900px) {
-            .phone-container { display: none !important; }
             .steps { grid-template-columns: 1fr; max-width: 400px; }
         }
         @media (max-width: 768px) {
@@ -488,7 +402,7 @@
 
         <div class="live-status fade-up delay-2">
             <span class="live-dot"></span>
-            <span>Сейчас в чате активно • несколько вписок сегодня</span>
+            <span>Сейчас в чате активно</span>
         </div>
 
         <div class="main-image fade-up delay-3">
@@ -522,12 +436,12 @@
                 <div class="step">
                     <div class="step-num">01</div>
                     <h3>Заходи в чат</h3>
-                    <p>Нажми кнопку ниже и сразу попади в живое общение</p>
+                    <p>Нажми на кнопку ниже и подай заявку — её рассмотрят. Подозрительные аккаунты попросят пройти небольшую проверку, она полностью конфиденциальная.</p>
                 </div>
                 <div class="step">
                     <div class="step-num">02</div>
                     <h3>Найди компанию</h3>
-                    <p>Пиши, кто свободен, смотри вписки и предложения на сегодня</p>
+                    <p>Пиши, кто свободен, смотри вписки и предложения на сегодня, либо будь активным участником — так тебя лучше узнают другие.</p>
                 </div>
                 <div class="step">
                     <div class="step-num">03</div>
@@ -546,25 +460,6 @@
 
     <footer>© 2026 • Только для тех, кто ищет настоящие эмоции</footer>
 
-    <!-- Телефон -->
-    <div class="phone-container" id="phone">
-        <div class="phone-frame">
-            <div class="phone-screen">
-                <div class="telegram-header">
-                    <span>←</span>
-                    <div style="flex:1; font-weight:600;">Вписон</div>
-                    <span>•••</span>
-                </div>
-                <div class="chat-messages" id="chat">
-                    <div class="message them">Привет, кто сегодня в городе? 😏<span class="message-time">22:41</span></div>
-                    <div class="message me">Только что приехал, ищу компанию на вписочку<span class="message-time">22:42</span></div>
-                    <div class="message them">У нас большая туса на районе, присоединяйся 😉<br>Адрес скину в личку<span class="message-time">22:43</span></div>
-                    <div class="message me">Ого, звучит круто! Еду 🔥<span class="message-time">22:44</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Структурированные данные -->
     <script type="application/ld+json">
     {
@@ -574,48 +469,6 @@
       "url": "https://вписки.москва/",
       "description": "Активный чат для реальных знакомств, вписок и ночных встреч в Москве"
     }
-    </script>
-
-    <script>
-        // Параллакс телефона при скролле
-        const phone = document.getElementById('phone');
-        let lastScroll = 0;
-
-        if (phone) {
-            window.addEventListener('scroll', () => {
-                const scroll = window.scrollY;
-                if (scroll > lastScroll && scroll > 180) {
-                    phone.style.transform = 'translateY(60px)';
-                } else {
-                    phone.style.transform = 'translateY(0)';
-                }
-                lastScroll = scroll;
-            }, { passive: true });
-        }
-
-        // Появление новых сообщений
-        const chat = document.getElementById('chat');
-        const extraMessages = [
-            { text: 'Кто ещё свободен сегодня ночью? 👀', time: '22:46', type: 'them' },
-            { text: 'Я +1, можно с девчонкой', time: '22:47', type: 'them' },
-            { text: 'Пишите в личку, соберёмся', time: '22:48', type: 'me' }
-        ];
-
-        let msgIndex = 0;
-        function addMessage() {
-            if (!chat || msgIndex >= extraMessages.length) return;
-            const msg = extraMessages[msgIndex];
-            const el = document.createElement('div');
-            el.className = `message ${msg.type}`;
-            el.innerHTML = `\( {msg.text}<span class="message-time"> \){msg.time}</span>`;
-            chat.appendChild(el);
-            chat.scrollTop = chat.scrollHeight;
-            msgIndex++;
-            if (msgIndex < extraMessages.length) {
-                setTimeout(addMessage, 2200 + Math.random() * 800);
-            }
-        }
-        setTimeout(addMessage, 2600);
     </script>
 </body>
 </html>
