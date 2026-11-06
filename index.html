@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <!-- Фавиконки -->
     <link rel="icon" href="favicon.png" type="image/png">
@@ -12,6 +11,11 @@
     <!-- Yandex verification -->
     <meta name="yandex-verification" content="a9e9d087112b8acc" />
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <link rel="preload" href="full-background.jpg" as="image" fetchpriority="high">
+    <link rel="preload" href="background.jpg" as="image" fetchpriority="high">
+   
     <!-- SEO -->
     <title>Знакомства Вписки Чат Москва • Реальные встречи и ночные тусы</title>
     <meta name="description" content="Активный чат для реальных знакомств, вписок и ночных тус в Москве. Быстро находи компанию для тусовки сегодня. Присоединяйся и общайся прямо сейчас!">
@@ -32,24 +36,13 @@
     <meta name="twitter:title" content="Знакомства Вписки Чат">
     <meta name="twitter:description" content="Реальные встречи и тусы сегодня">
 
-    <!-- Шрифты — оптимизированная загрузка -->
+    <!-- Шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    </noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --gold: #ffd700;
-            --gold-soft: #d4af37;
-            --blue: #00aaff;
-            --pink: #ff44dd;
-            --orange: #ffaa00;
-        }
 
         body {
             font-family: 'Inter', system-ui, sans-serif;
@@ -57,28 +50,33 @@
             min-height: 100vh;
             background: #0a0a1f;
             overflow-x: hidden;
-            line-height: 1.5;
         }
 
-        /* ===== ФОН ===== */
+        /* ===== ЗАДНИЙ ФОН (исправлено) ===== */
         .full-background {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -3;
             background-color: #0a0a1f;
             background-image: 
-                linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.72) 100%),
+                linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.65)),
                 url('full-background.jpg');
             background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;
+            /* will-change убран — он вызывал исчезновение фона */
         }
 
-        .city-overlay, .particles { 
+        .city-overlay, 
+        .particles { 
             position: fixed; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
             z-index: -2; 
             pointer-events: none; 
         }
@@ -89,7 +87,6 @@
                 radial-gradient(circle, rgba(255,215,100,0.08) 1px, transparent 1px);
             background-size: 80px 80px, 130px 130px;
             animation: cityLights 40s linear infinite;
-            opacity: 0.7;
         }
 
         @keyframes cityLights { 
@@ -97,408 +94,248 @@
             100% { background-position: 300px 250px, 200px 300px; } 
         }
 
-        /* ===== КОНТЕНТ ===== */
         .content {
             position: relative; 
             z-index: 10; 
-            max-width: 920px; 
+            max-width: 900px; 
             margin: 0 auto; 
-            padding: 30px 20px 60px;
+            padding: 20px; 
             text-align: center;
-        }
-
-        /* Анимации появления */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-        .delay-1 { animation-delay: 0.15s; }
-        .delay-2 { animation-delay: 0.3s; }
-        .delay-3 { animation-delay: 0.45s; }
-        .delay-4 { animation-delay: 0.6s; }
-        .delay-5 { animation-delay: 0.75s; }
-
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ЛОГО В СТЕКЛЯННОМ ОКЕ */
-        .logo-window {
-            display: inline-block;
-            padding: 28px 40px 32px;
-            margin-bottom: 22px;
-            background: rgba(10, 10, 25, 0.55);
-            border: 1px solid rgba(255, 215, 100, 0.28);
-            border-radius: 24px;
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            box-shadow: 
-                0 20px 50px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(255, 200, 80, 0.12),
-                inset 0 1px 0 rgba(255, 255, 255, 0.08);
-            animation: windowFloat 7s ease-in-out infinite;
-            position: relative;
-        }
-
-        .logo-window::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 24px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 50%, rgba(255,215,100,0.04) 100%);
-            pointer-events: none;
-        }
-
-        @keyframes windowFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
         }
 
         .logo-text {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.3rem, 8.5vw, 4.6rem); 
+            font-size: clamp(2rem, 8vw, 4.5rem); 
             font-weight: 700; 
-            line-height: 1.08; 
-            background: linear-gradient(120deg, #f8f8f8 0%, #e8e8e8 18%, #d4af37 50%, #ffd700 78%, #fff3a0 100%);
+            line-height: 1.1; 
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #f0f0f0 0%, #d0d0d0 25%, #c0c0c0 40%, #d4af37 65%, #f0c040 85%, #ffd700 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 22px rgba(255, 215, 100, 0.5));
-            letter-spacing: -0.5px;
-            position: relative;
+            text-shadow: 0 0 25px rgba(255, 215, 100, 0.6), 0 0 45px rgba(212, 175, 55, 0.4), 0 4px 20px rgba(180, 140, 40, 0.3);
         }
 
         .subtitle { 
-            font-size: clamp(1.05rem, 3.2vw, 1.6rem);
-            margin-bottom: 28px; 
-            opacity: 0.95;
-            font-weight: 500;
-            letter-spacing: 0.2px;
+            font-size: clamp(1rem, 3vw, 1.55rem);
+            margin-bottom: 30px; 
+            opacity: 0.95; 
         }
 
-        /* СТАТУС */
-        .live-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(0,0,0,0.45);
-            border: 1px solid rgba(255,215,0,0.25);
-            backdrop-filter: blur(12px);
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            margin-bottom: 32px;
-            color: #e8e8e8;
-        }
-        .live-dot {
-            width: 9px; height: 9px;
-            background: #22c55e;
-            border-radius: 50%;
-            box-shadow: 0 0 12px #22c55e;
-            animation: pulse 1.8s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(0.85); }
-        }
-
-        /* ГЛАВНАЯ КАРТИНКА */
         .main-image {
             width: 100%; 
-            max-width: 840px; 
-            margin: 10px auto 45px;
-            border-radius: 24px; 
+            max-width: 820px; 
+            margin: 20px auto 40px;
+            border-radius: 20px; 
             overflow: hidden;
-            box-shadow: 
-                0 0 80px rgba(255, 215, 0, 0.35),
-                0 30px 90px rgba(0,0,0,0.85);
-            position: relative;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.5), 0 30px 80px rgba(0,0,0,0.9);
+            display: block; 
         }
-        .main-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 24px;
-            box-shadow: inset 0 0 0 1px rgba(255,215,0,0.18);
-            pointer-events: none;
-        }
+
         .main-image img {
             width: 100%;
-            height: 420px;
+            height: 400px;
             object-fit: cover;
             display: block;
-            transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        .main-image:hover img {
-            transform: scale(1.03);
         }
 
-        /* ОПИСАНИЕ */
         .description {
-            max-width: 740px; 
-            margin: 0 auto 50px; 
-            font-size: clamp(0.95rem, 2.1vw, 1.15rem); 
-            line-height: 1.65;
-            background: rgba(0,0,0,0.48); 
-            padding: 28px 30px; 
-            border-radius: 20px;
-            backdrop-filter: blur(16px); 
-            border: 1px solid rgba(255,215,0,0.22);
-            text-align: left;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-        }
-        .description p {
-            margin-bottom: 14px;
-        }
-        .description ul {
-            list-style: none;
-            margin-top: 16px;
-        }
-        .description li {
-            position: relative;
-            padding-left: 22px;
-            margin-bottom: 10px;
-        }
-        .description li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--gold);
-            font-weight: 700;
+            max-width: 720px; 
+            margin: 0 auto 40px; 
+            font-size: clamp(0.9rem, 2vw, 1.15rem); 
+            line-height: 1.6;
+            background: rgba(0,0,0,0.5); 
+            padding: 25px; 
+            border-radius: 16px;
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255,215,0,0.25);
         }
 
-        /* КАК ЭТО РАБОТАЕТ */
-        .how-section {
-            margin: 60px 0 50px;
-        }
-        .section-title {
-            font-size: clamp(1.4rem, 4vw, 1.9rem);
-            font-weight: 700;
-            margin-bottom: 30px;
-            background: linear-gradient(90deg, #fff, #ffd700);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-            max-width: 820px;
-            margin: 0 auto;
-        }
-        .step {
-            background: rgba(0,0,0,0.42);
-            border: 1px solid rgba(255,215,0,0.18);
-            border-radius: 18px;
-            padding: 24px 18px;
-            backdrop-filter: blur(12px);
-            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
-        }
-        .step:hover {
-            transform: translateY(-6px);
-            border-color: rgba(255,215,0,0.4);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.45), 0 0 30px rgba(255,215,0,0.12);
-        }
-        .step-num {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--gold);
-            margin-bottom: 10px;
-            opacity: 0.9;
-        }
-        .step h3 {
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        .step p {
-            font-size: 0.9rem;
-            opacity: 0.85;
-            line-height: 1.45;
-        }
-
-        /* КНОПКИ */
         .buttons { 
             display: flex; 
-            gap: 16px; 
+            gap: 15px; 
             flex-wrap: wrap; 
             justify-content: center; 
-            margin: 40px 0 20px; 
+            margin: 30px 0 50px; 
         }
 
         .btn {
-            position: relative;
-            padding: 16px 28px; 
-            font-size: clamp(0.95rem, 2.8vw, 1.2rem);
+            padding: 15px 30px; 
+            font-size: clamp(0.9rem, 3vw, 1.3rem);
             font-weight: 600;
             border-radius: 50px; 
             text-decoration: none; 
-            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
             flex: 1 1 200px;
             text-align: center;
-            overflow: hidden;
-            border: 1px solid rgba(255, 215, 0, 0.18);
-            color: #f5f5f5;
-            letter-spacing: 0.2px;
         }
-        .btn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-        .btn:hover::before {
-            transform: translateX(100%);
-        }
-        .btn:hover { 
-            transform: translateY(-6px); 
-            border-color: rgba(255, 215, 0, 0.35);
-        }
+        .btn-chat { background: linear-gradient(90deg, #00aaff, #0077cc); color: #fff; }
+        .btn-bot  { background: linear-gradient(90deg, #ff44dd, #bb22aa); color: #fff; }
+        .btn-wait { background: linear-gradient(90deg, #ffaa00, #ff7700); color: #fff; }
+        .btn:hover { transform: translateY(-6px) scale(1.04); }
 
-        /* Глубокий синий */
-        .btn-chat { 
-            background: linear-gradient(145deg, #1a3a5c 0%, #0f2a45 50%, #0a1f35 100%);
-            box-shadow: 
-                0 10px 28px rgba(0, 0, 0, 0.45),
-                0 0 0 1px rgba(100, 160, 220, 0.12),
-                inset 0 1px 0 rgba(255,255,255,0.06);
-        }
-        .btn-chat:hover {
-            background: linear-gradient(145deg, #214868 0%, #153552 50%, #0f2a42 100%);
-            box-shadow: 
-                0 14px 36px rgba(0, 0, 0, 0.5),
-                0 0 24px rgba(80, 150, 220, 0.18),
-                inset 0 1px 0 rgba(255,255,255,0.08);
-        }
-
-        /* Тёмный сливовый */
-        .btn-bot  { 
-            background: linear-gradient(145deg, #3d1f3a 0%, #2a1528 50%, #1e0f1c 100%);
-            box-shadow: 
-                0 10px 28px rgba(0, 0, 0, 0.45),
-                0 0 0 1px rgba(180, 100, 160, 0.12),
-                inset 0 1px 0 rgba(255,255,255,0.05);
-        }
-        .btn-bot:hover {
-            background: linear-gradient(145deg, #4a2646 0%, #341a31 50%, #261422 100%);
-            box-shadow: 
-                0 14px 36px rgba(0, 0, 0, 0.5),
-                0 0 24px rgba(160, 80, 140, 0.18),
-                inset 0 1px 0 rgba(255,255,255,0.07);
-        }
-
-        /* Тёплый тёмно-янтарный */
-        .btn-wait { 
-            background: linear-gradient(145deg, #4a3218 0%, #352412 50%, #261a0c 100%);
-            box-shadow: 
-                0 10px 28px rgba(0, 0, 0, 0.45),
-                0 0 0 1px rgba(200, 150, 60, 0.15),
-                inset 0 1px 0 rgba(255,255,255,0.05);
-        }
-        .btn-wait:hover {
-            background: linear-gradient(145deg, #5a3e20 0%, #422c16 50%, #30220f 100%);
-            box-shadow: 
-                0 14px 36px rgba(0, 0, 0, 0.5),
-                0 0 24px rgba(200, 150, 60, 0.2),
-                inset 0 1px 0 rgba(255,255,255,0.07);
-        }
-
-        /* ФУТЕР */
         footer { 
             text-align: center; 
-            padding: 40px 15px 30px; 
-            opacity: 0.65; 
-            font-size: 0.88rem; 
+            padding: 30px 10px; 
+            opacity: 0.7; 
+            font-size: 0.85rem; 
         }
 
-        /* МОБИЛКА */
-        @media (max-width: 900px) {
-            .steps { grid-template-columns: 1fr; max-width: 400px; }
-        }
         @media (max-width: 768px) {
-            .content { padding: 24px 16px 50px; }
-            .logo-text { font-size: clamp(2.1rem, 9vw, 3.6rem); }
-            .subtitle { font-size: 1.05rem; padding: 0 6px; }
-            .description { padding: 22px 20px; font-size: 0.98rem; }
+            .logo-text { font-size: clamp(1.8rem, 7vw, 3.5rem); line-height: 1.2; }
+            .subtitle { font-size: 1rem; padding: 0 10px; }
+            .description { padding: 20px; font-size: 0.95rem; }
+            .phone-container { display: none !important; }
             .main-image img { height: 280px; }
-            .btn { flex: 1 1 100%; }
-            .live-status { font-size: 0.85rem; }
+        }
+
+        /* ===== ТЕЛЕФОН ===== */
+        .phone-container {
+            position: fixed; 
+            top: 100px; 
+            right: 30px; 
+            width: 260px; 
+            z-index: 100;
+            transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+            contain: layout paint;
+        }
+        .phone-frame {
+            width: 100%; 
+            padding: 12px; 
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            border-radius: 52px; 
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.8), 
+                0 0 0 14px #111,
+                inset 0 4px 15px rgba(255,255,255,0.08), 
+                0 0 60px rgba(255,215,100,0.25);
+            transform: perspective(1200px) rotateY(-12deg) rotateX(8deg);
+            transition: transform 0.4s ease;
+        }
+        .phone-frame:hover { 
+            transform: perspective(1200px) rotateY(-8deg) rotateX(4deg); 
+        }
+        .phone-screen {
+            height: 480px; 
+            background: #0f1621; 
+            border-radius: 38px; 
+            overflow: hidden;
+            position: relative; 
+            border: 2px solid #222;
+        }
+        .telegram-header {
+            background: #1e2736; 
+            padding: 10px 14px; 
+            display: flex; 
+            align-items: center;
+            gap: 8px; 
+            font-size: 14px; 
+            color: white;
+        }
+        .chat-messages {
+            height: calc(100% - 52px); 
+            padding: 14px; 
+            overflow-y: auto;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4));
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px;
+        }
+        .message {
+            max-width: 82%; 
+            padding: 9px 13px; 
+            border-radius: 16px;
+            font-size: 13.5px; 
+            line-height: 1.35;
+        }
+        .message.me { 
+            align-self: flex-end; 
+            background: #2a9eff; 
+            border-bottom-right-radius: 4px; 
+            color: white; 
+        }
+        .message.them { 
+            align-self: flex-start; 
+            background: #1e2736; 
+            border-bottom-left-radius: 4px; 
+        }
+        .message-time { 
+            font-size: 10px; 
+            opacity: 0.75; 
+            margin-top: 3px; 
+            display: block; 
         }
     </style>
 </head>
 <body>
+    <!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=110960015', 'ym');
+
+    ym(110960015, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/110960015" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
     <div class="full-background"></div>
     <div class="city-overlay"></div>
     <div class="particles"></div>
 
     <div class="content">
-        <div class="logo-window fade-up">
-            <h1 class="logo-text">Знакомства<br>Вписон<br>Чат</h1>
-        </div>
-        <p class="subtitle fade-up delay-1">🔥 Ночной город ждёт твоих новых знакомств 🔥</p>
+        <h1 class="logo-text">Знакомства<br>Вписки<br>Чат</h1>
+        <p class="subtitle">🔥 Ночной город ждёт твоих новых знакомств 🔥</p>
 
-        <div class="live-status fade-up delay-2">
-            <span class="live-dot"></span>
-            <span>Сейчас в чате активно</span>
-        </div>
-
-        <div class="main-image fade-up delay-3">
+        <div class="main-image">
             <img src="background.jpg" 
                  alt="Ночной город с людьми на тусовке"
-                 width="840" 
-                 height="420"
-                 loading="lazy"
+                 width="820" 
+                 height="400"
+                 fetchpriority="high"
+                 loading="eager"
                  decoding="async">
         </div>
 
-        <div class="description fade-up delay-4">
-            <p>Это не обычный чат, а живое сообщество реальных людей с чётким планом развития и большой целью. Он словно чёрная дыра притягивает тех, кто ищет новые знакомства и вписки 🎉.</p>
-            <p>Чат выделяется своей дерзостью и свежими правилами, которые объединяют людей в одном месте. Мы создаём максимально комфортные условия, чтобы сюда хотелось присоединяться снова и снова.</p>
-            <p><strong>Что у нас есть:</strong></p>
-            <ul>
-                <li>Администрация, которая следит за порядком и соблюдением правил 🛡️</li>
-                <li>Скрытые админы и модераторы, моментально устраняющие мошенничество, обман, рекламу и ботов 🕵️‍♂️</li>
-                <li>Актив чата — надёжные помощники модераторов с иммунитетом за мелкие проступки 😀</li>
-                <li>Умный бот 🤖, который всегда подскажет актуальную ссылку на наш новый чат</li>
-                <li>Сайт, который уже занимает первые страницы в Яндексе и DuckDuckGo 🔍 и будет постоянно развиваться</li>
-            </ul>
-            <p style="margin-top: 16px; margin-bottom: 0;">Владелец, администрация и все участники вместе строим нечто большее, чем просто чат знакомств и вписок. Присоединяйся — здесь по-настоящему живой и активный чат!</p>
-        </div>
-
-        <!-- Как это работает -->
-        <div class="how-section fade-up delay-5">
-            <h2 class="section-title">Как это работает</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-num">01</div>
-                    <h3>Заходи в чат</h3>
-                    <p>Нажми на кнопку ниже и подай заявку — её рассмотрят. Подозрительные аккаунты попросят пройти небольшую проверку, она полностью конфиденциальная.</p>
-                </div>
-                <div class="step">
-                    <div class="step-num">02</div>
-                    <h3>Найди компанию</h3>
-                    <p>Пиши, кто свободен, смотри вписки и предложения на сегодня, либо будь активным участником — так тебя лучше узнают другие.</p>
-                </div>
-                <div class="step">
-                    <div class="step-num">03</div>
-                    <h3>Встречайся</h3>
-                    <p>Договорись и выходи — реальные встречи без лишней воды</p>
-                </div>
-            </div>
+        <div class="description">
+            Это не обычный чат, а живое сообщество реальных людей с чётким планом развития и большой целью. Он словно чёрная дыра притягивает тех, кто ищет новые знакомства и вписки 🎉.Чат выделяется своей дерзостью и свежими правилами, которые объединяют людей в одном месте. Мы создаём максимально комфортные условия, чтобы сюда хотелось присоединяться снова и снова.Что у нас есть:
+• Администрация, которая следит за порядком и соблюдением правил 🛡️
+• Скрытые админы и модераторы, моментально устраняющие мошенничество, обман, рекламу и ботов 🕵️‍♂️
+• Актив чата — надёжные помощники модераторов с иммунитетом за мелкие проступки 😀
+• Умный бот 🤖, который всегда подскажет актуальную ссылку на наш новый чат
+• Сайт, который уже занимает первые страницы в Яндексе и DuckDuckGo 🔍 и будет постоянно развиваться, обрастая новыми фишками для привлечения участников.  Владелец, администрация и все участники вместе строим нечто большее, чем просто чат знакомств и вписок. Присоединяйся — здесь по-настоящему живой и активный чат!
         </div>
 
         <div class="buttons">
             <a href="https://t.me/+RmODa8JRsutmMmQ6" target="_blank" class="btn btn-chat">🚀 Перейти в чат</a>
             <a href="https://t.me/vpisochka112_bot" target="_blank" class="btn btn-bot">🤖 Наш бот</a>
-            <a href="https://t.me/www_vpiski_ru" target="_blank" class="btn btn-wait">⏳ Чат ожидающих</a>
+            <a href="https://t.me/www_vpiski_ru" target="_blank" class="btn btn-wait">⏳ Переход в чат ожидающих проверки</a>
         </div>
     </div>
 
     <footer>© 2026 • Только для тех, кто ищет настоящие эмоции</footer>
+
+    <div class="phone-container" id="phone">
+        <div class="phone-frame">
+            <div class="phone-screen">
+                <div class="telegram-header">
+                    <span>←</span>
+                    <div style="flex:1; font-weight:600;">Вписон</div>
+                    <span>•••</span>
+                </div>
+                <div class="chat-messages" id="chat">
+                    <div class="message them">Привет, кто сегодня в городе? 😏<span class="message-time">22:41</span></div>
+                    <div class="message me">Только что приехал, ищу компанию на вписочку<span class="message-time">22:42</span></div>
+                    <div class="message them">У нас большая туса на районе, присоединяйся 😉<br>Адрес скину в личку<span class="message-time">22:43</span></div>
+                    <div class="message me">Ого, звучит круто! Еду 🔥<span class="message-time">22:44</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Структурированные данные -->
     <script type="application/ld+json">
@@ -511,30 +348,32 @@
     }
     </script>
 
-    <!-- Яндекс.Метрика — загружается после отрисовки страницы, не тормозит -->
     <script>
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                (function(m,e,t,r,i,k,a){
-                    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-                    m[i].l=1*new Date();
-                    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-                    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-                })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=110960015', 'ym');
+        const phone = document.getElementById('phone');
+        let lastScroll = 0;
 
-                ym(110960015, 'init', {
-                    ssr: true,
-                    webvisor: true,
-                    clickmap: true,
-                    ecommerce: "dataLayer",
-                    referrer: document.referrer,
-                    url: location.href,
-                    accurateTrackBounce: true,
-                    trackLinks: true
-                });
-            }, 1500);
-        });
+        if (phone) {
+            window.addEventListener('scroll', () => {
+                const scroll = window.scrollY;
+                if (scroll > lastScroll && scroll > 200) {
+                    phone.style.transform = 'translateY(50px)';
+                } else {
+                    phone.style.transform = 'translateY(0)';
+                }
+                lastScroll = scroll;
+            }, { passive: true });
+        }
+
+        setTimeout(() => {
+            const chat = document.getElementById('chat');
+            if (chat) {
+                const newMsg = document.createElement('div');
+                newMsg.className = 'message them';
+                newMsg.innerHTML = 'Кто ещё свободен сегодня ночью? 👀<span class="message-time">22:46</span>';
+                chat.appendChild(newMsg);
+                chat.scrollTop = chat.scrollHeight;
+            }
+        }, 2800);
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/110960015" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 </body>
 </html>
