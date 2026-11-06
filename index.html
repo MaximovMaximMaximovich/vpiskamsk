@@ -306,17 +306,18 @@
             border-radius: 50px; 
             text-decoration: none; 
             transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.5);
             flex: 1 1 200px;
             text-align: center;
             overflow: hidden;
-            border: 1px solid transparent;
+            border: 1px solid rgba(255, 215, 0, 0.18);
+            color: #f5f5f5;
+            letter-spacing: 0.2px;
         }
         .btn::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.15), transparent);
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
             transform: translateX(-100%);
             transition: transform 0.6s ease;
         }
@@ -324,34 +325,56 @@
             transform: translateX(100%);
         }
         .btn:hover { 
-            transform: translateY(-7px) scale(1.03); 
+            transform: translateY(-6px); 
+            border-color: rgba(255, 215, 0, 0.35);
         }
 
+        /* Глубокий синий */
         .btn-chat { 
-            background: linear-gradient(135deg, #00b4ff, #0077cc); 
-            color: #fff;
-            box-shadow: 0 12px 30px rgba(0,120,255,0.35);
+            background: linear-gradient(145deg, #1a3a5c 0%, #0f2a45 50%, #0a1f35 100%);
+            box-shadow: 
+                0 10px 28px rgba(0, 0, 0, 0.45),
+                0 0 0 1px rgba(100, 160, 220, 0.12),
+                inset 0 1px 0 rgba(255,255,255,0.06);
         }
         .btn-chat:hover {
-            box-shadow: 0 16px 40px rgba(0,140,255,0.5);
+            background: linear-gradient(145deg, #214868 0%, #153552 50%, #0f2a42 100%);
+            box-shadow: 
+                0 14px 36px rgba(0, 0, 0, 0.5),
+                0 0 24px rgba(80, 150, 220, 0.18),
+                inset 0 1px 0 rgba(255,255,255,0.08);
         }
 
+        /* Тёмный сливовый */
         .btn-bot  { 
-            background: linear-gradient(135deg, #ff4de6, #c41a9e); 
-            color: #fff;
-            box-shadow: 0 12px 30px rgba(255,60,200,0.3);
+            background: linear-gradient(145deg, #3d1f3a 0%, #2a1528 50%, #1e0f1c 100%);
+            box-shadow: 
+                0 10px 28px rgba(0, 0, 0, 0.45),
+                0 0 0 1px rgba(180, 100, 160, 0.12),
+                inset 0 1px 0 rgba(255,255,255,0.05);
         }
         .btn-bot:hover {
-            box-shadow: 0 16px 40px rgba(255,70,210,0.45);
+            background: linear-gradient(145deg, #4a2646 0%, #341a31 50%, #261422 100%);
+            box-shadow: 
+                0 14px 36px rgba(0, 0, 0, 0.5),
+                0 0 24px rgba(160, 80, 140, 0.18),
+                inset 0 1px 0 rgba(255,255,255,0.07);
         }
 
+        /* Тёплый тёмно-янтарный */
         .btn-wait { 
-            background: linear-gradient(135deg, #ffb000, #ff6a00); 
-            color: #fff;
-            box-shadow: 0 12px 30px rgba(255,140,0,0.3);
+            background: linear-gradient(145deg, #4a3218 0%, #352412 50%, #261a0c 100%);
+            box-shadow: 
+                0 10px 28px rgba(0, 0, 0, 0.45),
+                0 0 0 1px rgba(200, 150, 60, 0.15),
+                inset 0 1px 0 rgba(255,255,255,0.05);
         }
         .btn-wait:hover {
-            box-shadow: 0 16px 40px rgba(255,150,0,0.45);
+            background: linear-gradient(145deg, #5a3e20 0%, #422c16 50%, #30220f 100%);
+            box-shadow: 
+                0 14px 36px rgba(0, 0, 0, 0.5),
+                0 0 24px rgba(200, 150, 60, 0.2),
+                inset 0 1px 0 rgba(255,255,255,0.07);
         }
 
         /* ФУТЕР */
@@ -362,94 +385,8 @@
             font-size: 0.88rem; 
         }
 
-        /* ===== ТЕЛЕФОН ===== */
-        .phone-container {
-            position: fixed; 
-            top: 90px; 
-            right: 28px; 
-            width: 250px; 
-            z-index: 100;
-            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-            contain: layout paint;
-        }
-        .phone-frame {
-            width: 100%; 
-            padding: 11px; 
-            background: linear-gradient(145deg, #1c1c1c, #0d0d0d);
-            border-radius: 48px; 
-            box-shadow: 
-                0 25px 55px rgba(0,0,0,0.85), 
-                0 0 0 12px #111,
-                inset 0 3px 12px rgba(255,255,255,0.07), 
-                0 0 50px rgba(255,215,100,0.22);
-            transform: perspective(1100px) rotateY(-11deg) rotateX(7deg);
-            transition: transform 0.45s ease;
-        }
-        .phone-frame:hover { 
-            transform: perspective(1100px) rotateY(-6deg) rotateX(3deg); 
-        }
-        .phone-screen {
-            height: 460px; 
-            background: #0c121b; 
-            border-radius: 36px; 
-            overflow: hidden;
-            position: relative; 
-            border: 1.5px solid #1a1a1a;
-        }
-        .telegram-header {
-            background: #17212b; 
-            padding: 11px 14px; 
-            display: flex; 
-            align-items: center;
-            gap: 8px; 
-            font-size: 13.5px; 
-            color: white;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .chat-messages {
-            height: calc(100% - 50px); 
-            padding: 14px; 
-            overflow-y: auto;
-            background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35));
-            display: flex; 
-            flex-direction: column; 
-            gap: 11px;
-            scrollbar-width: none;
-        }
-        .chat-messages::-webkit-scrollbar { display: none; }
-        .message {
-            max-width: 84%; 
-            padding: 9px 13px; 
-            border-radius: 16px;
-            font-size: 13.2px; 
-            line-height: 1.35;
-            animation: msgIn 0.4s ease;
-        }
-        @keyframes msgIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .message.me { 
-            align-self: flex-end; 
-            background: #2b9eff; 
-            border-bottom-right-radius: 4px; 
-            color: white; 
-        }
-        .message.them { 
-            align-self: flex-start; 
-            background: #182533; 
-            border-bottom-left-radius: 4px; 
-        }
-        .message-time { 
-            font-size: 10px; 
-            opacity: 0.7; 
-            margin-top: 3px; 
-            display: block; 
-        }
-
         /* МОБИЛКА */
         @media (max-width: 900px) {
-            .phone-container { display: none !important; }
             .steps { grid-template-columns: 1fr; max-width: 400px; }
         }
         @media (max-width: 768px) {
@@ -488,7 +425,7 @@
 
         <div class="live-status fade-up delay-2">
             <span class="live-dot"></span>
-            <span>Сейчас в чате активно • несколько вписок сегодня</span>
+            <span>Сейчас в чате активно</span>
         </div>
 
         <div class="main-image fade-up delay-3">
@@ -522,12 +459,12 @@
                 <div class="step">
                     <div class="step-num">01</div>
                     <h3>Заходи в чат</h3>
-                    <p>Нажми кнопку ниже и сразу попади в живое общение</p>
+                    <p>Нажми на кнопку ниже и подай заявку — её рассмотрят. Подозрительные аккаунты попросят пройти небольшую проверку, она полностью конфиденциальная.</p>
                 </div>
                 <div class="step">
                     <div class="step-num">02</div>
                     <h3>Найди компанию</h3>
-                    <p>Пиши, кто свободен, смотри вписки и предложения на сегодня</p>
+                    <p>Пиши, кто свободен, смотри вписки и предложения на сегодня, либо будь активным участником — так тебя лучше узнают другие.</p>
                 </div>
                 <div class="step">
                     <div class="step-num">03</div>
@@ -546,25 +483,6 @@
 
     <footer>© 2026 • Только для тех, кто ищет настоящие эмоции</footer>
 
-    <!-- Телефон -->
-    <div class="phone-container" id="phone">
-        <div class="phone-frame">
-            <div class="phone-screen">
-                <div class="telegram-header">
-                    <span>←</span>
-                    <div style="flex:1; font-weight:600;">Вписон</div>
-                    <span>•••</span>
-                </div>
-                <div class="chat-messages" id="chat">
-                    <div class="message them">Привет, кто сегодня в городе? 😏<span class="message-time">22:41</span></div>
-                    <div class="message me">Только что приехал, ищу компанию на вписочку<span class="message-time">22:42</span></div>
-                    <div class="message them">У нас большая туса на районе, присоединяйся 😉<br>Адрес скину в личку<span class="message-time">22:43</span></div>
-                    <div class="message me">Ого, звучит круто! Еду 🔥<span class="message-time">22:44</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Структурированные данные -->
     <script type="application/ld+json">
     {
@@ -574,48 +492,6 @@
       "url": "https://вписки.москва/",
       "description": "Активный чат для реальных знакомств, вписок и ночных встреч в Москве"
     }
-    </script>
-
-    <script>
-        // Параллакс телефона при скролле
-        const phone = document.getElementById('phone');
-        let lastScroll = 0;
-
-        if (phone) {
-            window.addEventListener('scroll', () => {
-                const scroll = window.scrollY;
-                if (scroll > lastScroll && scroll > 180) {
-                    phone.style.transform = 'translateY(60px)';
-                } else {
-                    phone.style.transform = 'translateY(0)';
-                }
-                lastScroll = scroll;
-            }, { passive: true });
-        }
-
-        // Появление новых сообщений
-        const chat = document.getElementById('chat');
-        const extraMessages = [
-            { text: 'Кто ещё свободен сегодня ночью? 👀', time: '22:46', type: 'them' },
-            { text: 'Я +1, можно с девчонкой', time: '22:47', type: 'them' },
-            { text: 'Пишите в личку, соберёмся', time: '22:48', type: 'me' }
-        ];
-
-        let msgIndex = 0;
-        function addMessage() {
-            if (!chat || msgIndex >= extraMessages.length) return;
-            const msg = extraMessages[msgIndex];
-            const el = document.createElement('div');
-            el.className = `message ${msg.type}`;
-            el.innerHTML = `${msg.text}<span class="message-time">${msg.time}</span>`;
-            chat.appendChild(el);
-            chat.scrollTop = chat.scrollHeight;
-            msgIndex++;
-            if (msgIndex < extraMessages.length) {
-                setTimeout(addMessage, 2200 + Math.random() * 800);
-            }
-        }
-        setTimeout(addMessage, 2600);
     </script>
 </body>
 </html>
