@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
-    <!-- Фавиконки -->
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="favicon.png">
 
-    <!-- Yandex verification -->
     <meta name="yandex-verification" content="a9e9d087112b8acc" />
 
-    <!-- SEO -->
     <title>Знакомства Вписки Чат Москва • Реальные встречи и ночные тусы</title>
     <meta name="description" content="Активный чат для реальных знакомств, вписок и ночных тус в Москве. Быстро находи компанию для тусовки сегодня. Присоединяйся и общайся прямо сейчас!">
     <meta name="keywords" content="знакомства москва, вписки москва, вписки в москве, чат знакомств, ночные тусы, реальные встречи москва, вписка сегодня">
@@ -20,7 +17,6 @@
     <meta name="author" content="Вписон">
     <link rel="canonical" href="https://вписки.москва/">
 
-    <!-- Open Graph -->
     <meta property="og:title" content="Знакомства Вписки Чат Москва">
     <meta property="og:description" content="Активный чат для реальных знакомств и ночных тус в Москве 🔥">
     <meta property="og:type" content="website">
@@ -32,12 +28,10 @@
     <meta name="twitter:title" content="Знакомства Вписки Чат">
     <meta name="twitter:description" content="Реальные встречи и тусы сегодня">
 
-    <!-- Preload -->
     <link rel="preload" href="background.jpg" as="image" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Шрифты -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
@@ -63,7 +57,6 @@
             overflow-x: hidden;
         }
 
-        /* ===== ФОН ===== */
         .full-background {
             position: fixed;
             inset: 0;
@@ -100,7 +93,6 @@
             .full-background { background-attachment: scroll; }
         }
 
-        /* ===== КОНТЕНТ ===== */
         .content {
             position: relative;
             z-index: 10;
@@ -125,7 +117,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ЛОГО */
         .logo-text {
             font-family: 'Playfair Display', Georgia, serif;
             font-size: clamp(2.5rem, 9vw, 5.1rem);
@@ -147,7 +138,6 @@
             font-weight: 500;
         }
 
-        /* СТАТУС */
         .live-status {
             display: inline-flex;
             align-items: center;
@@ -177,7 +167,6 @@
             50% { opacity: 0.55; transform: scale(0.82); }
         }
 
-        /* ГЛАВНАЯ КАРТИНКА */
         .main-image {
             width: 100%;
             max-width: 840px;
@@ -211,7 +200,6 @@
             transform: scale(1.025);
         }
 
-        /* ОПИСАНИЕ */
         .description {
             max-width: 740px;
             margin: 0 auto 48px;
@@ -242,7 +230,6 @@
             font-weight: 700;
         }
 
-        /* КАК ЭТО РАБОТАЕТ */
         .how-section { margin: 55px 0 45px; }
 
         .section-title {
@@ -318,18 +305,19 @@
             margin: 0 auto 36px;
         }
 
+        /* Указатель */
         .wheel-pointer {
             position: absolute;
-            top: -16px;
+            top: -14px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 13px solid transparent;
-            border-right: 13px solid transparent;
-            border-top: 26px solid #ffd700;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 24px solid #ffd700;
             z-index: 30;
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.55));
+            filter: drop-shadow(0 3px 8px rgba(0,0,0,0.5));
         }
 
         .wheel {
@@ -343,12 +331,12 @@
                 0 0 50px rgba(255, 215, 0, 0.18),
                 inset 0 0 40px rgba(0,0,0,0.45);
             transition: transform 5.2s cubic-bezier(0.12, 0.8, 0.25, 1);
+            /* Сегменты начинаются сверху (0deg) */
             background: conic-gradient(
-                from -45deg,
-                #1a7a4c 0deg 90deg,
-                #b8962e 90deg 180deg,
-                #8b2e3a 180deg 270deg,
-                #3b2d6b 270deg 360deg
+                #1a7a4c 0deg 90deg,      /* Да */
+                #b8962e 90deg 180deg,    /* Точно да */
+                #8b2e3a 180deg 270deg,   /* Нет */
+                #3b2d6b 270deg 360deg    /* Точно не сегодня */
             );
         }
 
@@ -434,11 +422,8 @@
 
         .result.yes { color: #4ade80; }
         .result.definitely { color: #ffd700; }
-        .result.no { color: #f87171; }
-        .result.not-today { color: #c084fc; }
         .result.zozh { color: #94a3b8; font-size: 1.25rem; }
 
-        /* Конфетти */
         .confetti {
             position: fixed;
             top: -20px;
@@ -452,7 +437,6 @@
             100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
         }
 
-        /* КНОПКИ */
         .buttons {
             display: flex;
             gap: 14px;
@@ -526,7 +510,6 @@
             font-size: 0.88rem;
         }
 
-        /* Мобилка */
         @media (max-width: 900px) {
             .steps { grid-template-columns: 1fr; max-width: 380px; }
         }
@@ -592,7 +575,6 @@
             <p style="margin-top: 16px; margin-bottom: 0;">Владелец, администрация и все участники вместе строим нечто большее, чем просто чат знакомств и вписок. Присоединяйся — здесь по-настоящему живой и активный чат!</p>
         </div>
 
-        <!-- Как это работает -->
         <div class="how-section fade-up delay-5">
             <h2 class="section-title">Как это работает</h2>
             <div class="steps">
@@ -623,10 +605,11 @@
                 <div class="wheel-pointer"></div>
                 
                 <div class="wheel" id="wheel">
-                    <div class="wheel-label" style="--r: 0deg"><span>Да</span></div>
-                    <div class="wheel-label" style="--r: 90deg"><span>Точно да</span></div>
-                    <div class="wheel-label" style="--r: 180deg"><span>Нет</span></div>
-                    <div class="wheel-label" style="--r: 270deg"><span>Точно не сегодня</span></div>
+                    <!-- Центры сегментов: 45°, 135°, 225°, 315° -->
+                    <div class="wheel-label" style="--r: 45deg"><span>Да</span></div>
+                    <div class="wheel-label" style="--r: 135deg"><span>Точно да</span></div>
+                    <div class="wheel-label" style="--r: 225deg"><span>Нет</span></div>
+                    <div class="wheel-label" style="--r: 315deg"><span>Точно не сегодня</span></div>
                     
                     <div class="wheel-center">✨</div>
                 </div>
@@ -664,11 +647,13 @@
         let isSpinning = false;
         let currentRotation = 0;
 
+        // Центры сегментов (в градусах от верха)
+        // Чтобы сегмент оказался под указателем сверху, нужно повернуть на (360 - center)
         const options = [
-            { text: 'Да 💚', class: 'yes', angle: 0, confetti: true },
-            { text: 'Точно да 🔥', class: 'definitely', angle: 90, confetti: true },
-            { text: 'Нет ❤️', class: 'no', angle: 180, confetti: false },
-            { text: 'Точно не сегодня 🌙', class: 'not-today', angle: 270, confetti: false }
+            { text: 'Да 💚',           class: 'yes',        center: 45,  confetti: true },
+            { text: 'Точно да 🔥',     class: 'definitely', center: 135, confetti: true },
+            { text: 'Нет',             class: 'zozh',       center: 225, confetti: false },
+            { text: 'Точно не сегодня', class: 'zozh',      center: 315, confetti: false }
         ];
 
         spinBtn.addEventListener('click', () => {
@@ -678,24 +663,21 @@
             resultEl.className = 'result';
             resultEl.textContent = '';
 
-            const randomIndex = Math.floor(Math.random() * options.length);
-            const selected = options[randomIndex];
+            const selected = options[Math.floor(Math.random() * options.length)];
 
-            const spins = 6 + Math.floor(Math.random() * 3);
-            const extra = Math.random() * 20 - 10;
-            const targetAngle = 360 * spins + (360 - selected.angle) + extra;
+            const spins = 6 + Math.floor(Math.random() * 3); // 6–8 полных оборотов
+            const extra = (Math.random() * 16) - 8;          // небольшое случайное смещение
+            const targetAngle = 360 * spins + (360 - selected.center) + extra;
 
             currentRotation += targetAngle;
             wheel.style.transform = `rotate(${currentRotation}deg)`;
 
             setTimeout(() => {
                 if (selected.confetti) {
-                    // Положительный результат
                     resultEl.textContent = selected.text;
                     resultEl.className = `result show ${selected.class}`;
                     createConfetti();
                 } else {
-                    // Отрицательный результат → ЗОЖ
                     resultEl.textContent = 'сегодня ЗОЖ 🧘';
                     resultEl.className = 'result show zozh';
                 }
