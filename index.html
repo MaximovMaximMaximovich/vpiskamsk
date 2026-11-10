@@ -32,7 +32,7 @@
     <meta name="twitter:title" content="Знакомства Вписки Чат">
     <meta name="twitter:description" content="Реальные встречи и тусы сегодня">
 
-    <!-- Preload только критичных ресурсов -->
+    <!-- Preload -->
     <link rel="preload" href="background.jpg" as="image" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,14 +95,9 @@
             100% { background-position: 280px 220px, 180px 260px; }
         }
 
-        /* Отключаем тяжёлые эффекты на слабых устройствах */
         @media (max-width: 768px), (prefers-reduced-motion: reduce) {
-            .particles {
-                display: none;
-            }
-            .full-background {
-                background-attachment: scroll;
-            }
+            .particles { display: none; }
+            .full-background { background-attachment: scroll; }
         }
 
         /* ===== КОНТЕНТ ===== */
@@ -115,7 +110,6 @@
             text-align: center;
         }
 
-        /* Анимации появления */
         .fade-up {
             opacity: 0;
             transform: translateY(24px);
@@ -233,21 +227,13 @@
             box-shadow: 0 18px 45px rgba(0,0,0,0.35);
         }
 
-        .description p {
-            margin-bottom: 14px;
-        }
-
-        .description ul {
-            list-style: none;
-            margin-top: 16px;
-        }
-
+        .description p { margin-bottom: 14px; }
+        .description ul { list-style: none; margin-top: 16px; }
         .description li {
             position: relative;
             padding-left: 22px;
             margin-bottom: 10px;
         }
-
         .description li::before {
             content: '•';
             position: absolute;
@@ -257,9 +243,7 @@
         }
 
         /* КАК ЭТО РАБОТАЕТ */
-        .how-section {
-            margin: 55px 0 45px;
-        }
+        .how-section { margin: 55px 0 45px; }
 
         .section-title {
             font-size: clamp(1.4rem, 4vw, 1.9rem);
@@ -315,65 +299,83 @@
             line-height: 1.45;
         }
 
-        /* ===== КОЛЕСО ФОРТУНЫ ===== */
+        /* ===== КОЛЕСО (современная версия) ===== */
         .wheel-section {
-            margin: 60px 0 50px;
+            margin: 65px 0 55px;
             text-align: center;
         }
 
         .wheel-subtitle {
             font-size: 1.05rem;
             opacity: 0.85;
-            margin-bottom: 32px;
+            margin-bottom: 36px;
         }
 
         .wheel-wrapper {
             position: relative;
-            width: 280px;
-            height: 280px;
-            margin: 0 auto 30px;
+            width: 290px;
+            height: 290px;
+            margin: 0 auto 36px;
         }
 
+        /* Указатель */
         .wheel-pointer {
             position: absolute;
-            top: -18px;
+            top: -16px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 14px solid transparent;
-            border-right: 14px solid transparent;
-            border-top: 28px solid #ffd700;
-            z-index: 20;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+            border-left: 13px solid transparent;
+            border-right: 13px solid transparent;
+            border-top: 26px solid #ffd700;
+            z-index: 30;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.55));
         }
 
+        /* Само колесо */
         .wheel {
             width: 100%;
             height: 100%;
             border-radius: 50%;
             position: relative;
             overflow: hidden;
-            border: 6px solid rgba(255, 215, 0, 0.35);
+            border: 7px solid rgba(255, 215, 0, 0.28);
             box-shadow: 
-                0 0 40px rgba(255, 215, 0, 0.25),
-                inset 0 0 30px rgba(0,0,0,0.4);
-            transition: transform 4.8s cubic-bezier(0.15, 0.85, 0.25, 1);
+                0 0 50px rgba(255, 215, 0, 0.18),
+                inset 0 0 40px rgba(0,0,0,0.45);
+            transition: transform 5.2s cubic-bezier(0.12, 0.8, 0.25, 1);
             background: conic-gradient(
-                from 0deg,
-                #16a34a 0deg 90deg,
-                #d4af37 90deg 180deg,
-                #dc2626 180deg 270deg,
-                #4c1d95 270deg 360deg
+                from -45deg,
+                #1a7a4c 0deg 90deg,
+                #b8962e 90deg 180deg,
+                #8b2e3a 180deg 270deg,
+                #3b2d6b 270deg 360deg
             );
         }
 
-        .wheel-labels {
+        /* Центр колеса */
+        .wheel-center {
             position: absolute;
-            inset: 0;
-            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 68px;
+            height: 68px;
+            background: linear-gradient(145deg, #1a1a2e, #0d0d1a);
+            border-radius: 50%;
+            border: 4px solid rgba(255, 215, 0, 0.45);
+            box-shadow: 
+                0 0 20px rgba(255, 215, 0, 0.25),
+                inset 0 0 12px rgba(0,0,0,0.6);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
         }
 
+        /* Подписи на сегментах */
         .wheel-label {
             position: absolute;
             width: 100%;
@@ -381,50 +383,54 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 0.92rem;
-            color: white;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+            pointer-events: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.95);
+            text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+            letter-spacing: 0.3px;
         }
 
         .wheel-label span {
-            transform: rotate(var(--rot)) translateY(-95px);
+            transform: rotate(var(--r)) translateY(-102px);
         }
 
+        /* Кнопка */
         .spin-btn {
             display: inline-block;
-            padding: 15px 38px;
+            padding: 15px 42px;
             font-size: 1.1rem;
             font-weight: 600;
             color: #0a0a1f;
-            background: linear-gradient(135deg, #ffd700, #e6c200);
+            background: linear-gradient(135deg, #ffd700, #e0b800);
             border: none;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.35);
-            letter-spacing: 0.3px;
+            box-shadow: 0 8px 28px rgba(255, 215, 0, 0.32);
+            letter-spacing: 0.4px;
         }
 
         .spin-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.45);
+            box-shadow: 0 12px 32px rgba(255, 215, 0, 0.42);
         }
 
         .spin-btn:disabled {
-            opacity: 0.6;
+            opacity: 0.55;
             cursor: not-allowed;
             transform: none;
         }
 
+        /* Результат */
         .result {
-            margin-top: 28px;
-            min-height: 48px;
-            font-size: 1.35rem;
+            margin-top: 30px;
+            min-height: 50px;
+            font-size: 1.4rem;
             font-weight: 700;
             opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: scale(0.85);
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .result.show {
@@ -440,23 +446,15 @@
         /* Конфетти */
         .confetti {
             position: fixed;
-            width: 10px;
-            height: 10px;
             top: -20px;
             z-index: 9999;
             pointer-events: none;
-            animation: confetti-fall 2.8s ease-out forwards;
+            animation: confetti-fall 2.9s ease-out forwards;
         }
 
         @keyframes confetti-fall {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
         }
 
         /* КНОПКИ */
@@ -493,10 +491,7 @@
             transition: transform 0.55s ease;
         }
 
-        .btn:hover::before {
-            transform: translateX(100%);
-        }
-
+        .btn:hover::before { transform: translateX(100%); }
         .btn:hover {
             transform: translateY(-5px);
             border-color: rgba(255, 215, 0, 0.32);
@@ -529,7 +524,6 @@
             box-shadow: 0 14px 34px rgba(0,0,0,0.45), 0 0 20px rgba(200,150,60,0.18);
         }
 
-        /* ФУТЕР */
         footer {
             text-align: center;
             padding: 35px 15px 28px;
@@ -537,59 +531,30 @@
             font-size: 0.88rem;
         }
 
-        /* МОБИЛКА */
+        /* Мобилка */
         @media (max-width: 900px) {
-            .steps {
-                grid-template-columns: 1fr;
-                max-width: 380px;
-            }
+            .steps { grid-template-columns: 1fr; max-width: 380px; }
         }
 
         @media (max-width: 768px) {
-            .content {
-                padding: 26px 16px 55px;
-            }
-            .logo-text {
-                font-size: clamp(2.2rem, 9.5vw, 3.5rem);
-            }
-            .subtitle {
-                font-size: 1.05rem;
-                padding: 0 4px;
-            }
-            .description {
-                padding: 22px 18px;
-                font-size: 0.97rem;
-            }
-            .main-image img {
-                height: 260px;
-            }
-            .btn {
-                flex: 1 1 100%;
-            }
-            .live-status {
-                font-size: 0.85rem;
-            }
-
-            .live-status,
-            .description,
-            .step {
+            .content { padding: 26px 16px 55px; }
+            .logo-text { font-size: clamp(2.2rem, 9.5vw, 3.5rem); }
+            .subtitle { font-size: 1.05rem; padding: 0 4px; }
+            .description { padding: 22px 18px; font-size: 0.97rem; }
+            .main-image img { height: 260px; }
+            .btn { flex: 1 1 100%; }
+            .live-status { font-size: 0.85rem; }
+            .live-status, .description, .step {
                 backdrop-filter: none;
                 -webkit-backdrop-filter: none;
             }
         }
 
         @media (max-width: 480px) {
-            .main-image img {
-                height: 220px;
-            }
-            .wheel-wrapper {
-                width: 240px;
-                height: 240px;
-            }
-            .wheel-label span {
-                transform: rotate(var(--rot)) translateY(-82px);
-                font-size: 0.85rem;
-            }
+            .main-image img { height: 220px; }
+            .wheel-wrapper { width: 250px; height: 250px; }
+            .wheel-label span { transform: rotate(var(--r)) translateY(-88px); font-size: 0.88rem; }
+            .wheel-center { width: 58px; height: 58px; font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -654,14 +619,22 @@
             </div>
         </div>
 
-        <!-- ===== КОЛЕСО ФОРТУНЫ ===== -->
+        <!-- ===== КОЛЕСО ===== -->
         <section class="wheel-section fade-up">
             <h2 class="section-title">Стоит ли сегодня?</h2>
             <p class="wheel-subtitle">Крутани колесо и узнай свой вердикт 🔥</p>
 
             <div class="wheel-wrapper">
                 <div class="wheel-pointer"></div>
-                <div class="wheel" id="wheel"></div>
+                
+                <div class="wheel" id="wheel">
+                    <div class="wheel-label" style="--r: 0deg"><span>Да</span></div>
+                    <div class="wheel-label" style="--r: 90deg"><span>Точно да</span></div>
+                    <div class="wheel-label" style="--r: 180deg"><span>Нет</span></div>
+                    <div class="wheel-label" style="--r: 270deg"><span>Точно не сегодня</span></div>
+                    
+                    <div class="wheel-center">✨</div>
+                </div>
             </div>
 
             <button class="spin-btn" id="spinBtn">Крутить колесо</button>
@@ -677,7 +650,6 @@
 
     <footer>© 2026 • Только для тех, кто ищет настоящие эмоции</footer>
 
-    <!-- Структурированные данные -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -694,32 +666,15 @@
         const spinBtn = document.getElementById('spinBtn');
         const resultEl = document.getElementById('result');
 
-        // Подписи на колесе
-        const labels = [
-            { text: 'Да', rot: 45 },
-            { text: 'Точно да', rot: 135 },
-            { text: 'Нет', rot: 225 },
-            { text: 'Точно не сегодня', rot: 315 }
-        ];
-
-        const labelsContainer = document.createElement('div');
-        labelsContainer.className = 'wheel-labels';
-        labels.forEach(l => {
-            const div = document.createElement('div');
-            div.className = 'wheel-label';
-            div.innerHTML = `<span style="--rot: \( {l.rot}deg"> \){l.text}</span>`;
-            labelsContainer.appendChild(div);
-        });
-        wheel.appendChild(labelsContainer);
-
         let isSpinning = false;
         let currentRotation = 0;
 
+        // Углы соответствуют сегментам (с учётом -45deg смещения градиента)
         const options = [
-            { text: 'Да 💚', class: 'yes', angle: 45 },
-            { text: 'Точно да 🔥', class: 'definitely', angle: 135 },
-            { text: 'Нет ❤️', class: 'no', angle: 225 },
-            { text: 'Точно не сегодня 🌙', class: 'not-today', angle: 315 }
+            { text: 'Да 💚', class: 'yes', angle: 0 },
+            { text: 'Точно да 🔥', class: 'definitely', angle: 90 },
+            { text: 'Нет ❤️', class: 'no', angle: 180 },
+            { text: 'Точно не сегодня 🌙', class: 'not-today', angle: 270 }
         ];
 
         spinBtn.addEventListener('click', () => {
@@ -732,8 +687,9 @@
             const randomIndex = Math.floor(Math.random() * options.length);
             const selected = options[randomIndex];
 
-            const spins = 5 + Math.floor(Math.random() * 3);
-            const targetAngle = 360 * spins + (360 - selected.angle) + (Math.random() * 20 - 10);
+            const spins = 6 + Math.floor(Math.random() * 3); // 6–8 оборотов
+            const extra = Math.random() * 20 - 10; // небольшое случайное смещение
+            const targetAngle = 360 * spins + (360 - selected.angle) + extra;
 
             currentRotation += targetAngle;
             wheel.style.transform = `rotate(${currentRotation}deg)`;
@@ -744,23 +700,23 @@
                 createConfetti();
                 isSpinning = false;
                 spinBtn.disabled = false;
-            }, 4900);
+            }, 5300);
         });
 
         function createConfetti() {
-            const colors = ['#ffd700', '#22c55e', '#f472b6', '#60a5fa', '#fbbf24', '#a78bfa'];
-            for (let i = 0; i < 45; i++) {
+            const colors = ['#ffd700', '#4ade80', '#f472b6', '#60a5fa', '#fbbf24', '#c084fc', '#fb7185'];
+            for (let i = 0; i < 48; i++) {
                 const conf = document.createElement('div');
                 conf.className = 'confetti';
                 conf.style.left = Math.random() * 100 + 'vw';
                 conf.style.background = colors[Math.floor(Math.random() * colors.length)];
-                conf.style.width = (6 + Math.random() * 8) + 'px';
-                conf.style.height = (6 + Math.random() * 8) + 'px';
-                conf.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-                conf.style.animationDelay = (Math.random() * 0.4) + 's';
-                conf.style.animationDuration = (2.2 + Math.random() * 1.2) + 's';
+                conf.style.width = (5 + Math.random() * 9) + 'px';
+                conf.style.height = (5 + Math.random() * 9) + 'px';
+                conf.style.borderRadius = Math.random() > 0.4 ? '50%' : '2px';
+                conf.style.animationDelay = (Math.random() * 0.5) + 's';
+                conf.style.animationDuration = (2.3 + Math.random() * 1.3) + 's';
                 document.body.appendChild(conf);
-                setTimeout(() => conf.remove(), 3500);
+                setTimeout(() => conf.remove(), 3800);
             }
         }
     })();
