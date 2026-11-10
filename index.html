@@ -315,6 +315,150 @@
             line-height: 1.45;
         }
 
+        /* ===== КОЛЕСО ФОРТУНЫ ===== */
+        .wheel-section {
+            margin: 60px 0 50px;
+            text-align: center;
+        }
+
+        .wheel-subtitle {
+            font-size: 1.05rem;
+            opacity: 0.85;
+            margin-bottom: 32px;
+        }
+
+        .wheel-wrapper {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 30px;
+        }
+
+        .wheel-pointer {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 14px solid transparent;
+            border-right: 14px solid transparent;
+            border-top: 28px solid #ffd700;
+            z-index: 20;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+        }
+
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            border: 6px solid rgba(255, 215, 0, 0.35);
+            box-shadow: 
+                0 0 40px rgba(255, 215, 0, 0.25),
+                inset 0 0 30px rgba(0,0,0,0.4);
+            transition: transform 4.8s cubic-bezier(0.15, 0.85, 0.25, 1);
+            background: conic-gradient(
+                from 0deg,
+                #16a34a 0deg 90deg,
+                #d4af37 90deg 180deg,
+                #dc2626 180deg 270deg,
+                #4c1d95 270deg 360deg
+            );
+        }
+
+        .wheel-labels {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .wheel-label {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+        }
+
+        .wheel-label span {
+            transform: rotate(var(--rot)) translateY(-95px);
+        }
+
+        .spin-btn {
+            display: inline-block;
+            padding: 15px 38px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0a0a1f;
+            background: linear-gradient(135deg, #ffd700, #e6c200);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.35);
+            letter-spacing: 0.3px;
+        }
+
+        .spin-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.45);
+        }
+
+        .spin-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result {
+            margin-top: 28px;
+            min-height: 48px;
+            font-size: 1.35rem;
+            font-weight: 700;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .result.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .result.yes { color: #4ade80; }
+        .result.definitely { color: #ffd700; }
+        .result.no { color: #f87171; }
+        .result.not-today { color: #c084fc; }
+
+        /* Конфетти */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -20px;
+            z-index: 9999;
+            pointer-events: none;
+            animation: confetti-fall 2.8s ease-out forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
         /* КНОПКИ */
         .buttons {
             display: flex;
@@ -358,7 +502,6 @@
             border-color: rgba(255, 215, 0, 0.32);
         }
 
-        /* Глубокий синий */
         .btn-chat {
             background: linear-gradient(145deg, #1a3a5c 0%, #0f2a45 50%, #0a1f35 100%);
             box-shadow: 0 10px 26px rgba(0,0,0,0.4);
@@ -368,7 +511,6 @@
             box-shadow: 0 14px 34px rgba(0,0,0,0.45), 0 0 20px rgba(80,150,220,0.15);
         }
 
-        /* Тёмный сливовый */
         .btn-bot {
             background: linear-gradient(145deg, #3d1f3a 0%, #2a1528 50%, #1e0f1c 100%);
             box-shadow: 0 10px 26px rgba(0,0,0,0.4);
@@ -378,7 +520,6 @@
             box-shadow: 0 14px 34px rgba(0,0,0,0.45), 0 0 20px rgba(160,80,140,0.15);
         }
 
-        /* Тёплый тёмно-янтарный */
         .btn-wait {
             background: linear-gradient(145deg, #4a3218 0%, #352412 50%, #261a0c 100%);
             box-shadow: 0 10px 26px rgba(0,0,0,0.4);
@@ -429,7 +570,6 @@
                 font-size: 0.85rem;
             }
 
-            /* Убираем backdrop-filter на мобильных — сильно тормозит */
             .live-status,
             .description,
             .step {
@@ -438,10 +578,17 @@
             }
         }
 
-        /* Очень слабые устройства */
         @media (max-width: 480px) {
             .main-image img {
                 height: 220px;
+            }
+            .wheel-wrapper {
+                width: 240px;
+                height: 240px;
+            }
+            .wheel-label span {
+                transform: rotate(var(--rot)) translateY(-82px);
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -507,6 +654,20 @@
             </div>
         </div>
 
+        <!-- ===== КОЛЕСО ФОРТУНЫ ===== -->
+        <section class="wheel-section fade-up">
+            <h2 class="section-title">Стоит ли сегодня?</h2>
+            <p class="wheel-subtitle">Крутани колесо и узнай свой вердикт 🔥</p>
+
+            <div class="wheel-wrapper">
+                <div class="wheel-pointer"></div>
+                <div class="wheel" id="wheel"></div>
+            </div>
+
+            <button class="spin-btn" id="spinBtn">Крутить колесо</button>
+            <div class="result" id="result"></div>
+        </section>
+
         <div class="buttons">
             <a href="https://t.me/+RmODa8JRsutmMmQ6" target="_blank" rel="noopener" class="btn btn-chat">🚀 Перейти в чат</a>
             <a href="https://t.me/vpisochka112_bot" target="_blank" rel="noopener" class="btn btn-bot">🤖 Наш бот</a>
@@ -527,9 +688,83 @@
     }
     </script>
 
-    <!-- Yandex.Metrika — загружаем в конце, чтобы не мешать -->
-    <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    <script>
+    (function() {
+        const wheel = document.getElementById('wheel');
+        const spinBtn = document.getElementById('spinBtn');
+        const resultEl = document.getElementById('result');
+
+        // Подписи на колесе
+        const labels = [
+            { text: 'Да', rot: 45 },
+            { text: 'Точно да', rot: 135 },
+            { text: 'Нет', rot: 225 },
+            { text: 'Точно не сегодня', rot: 315 }
+        ];
+
+        const labelsContainer = document.createElement('div');
+        labelsContainer.className = 'wheel-labels';
+        labels.forEach(l => {
+            const div = document.createElement('div');
+            div.className = 'wheel-label';
+            div.innerHTML = `<span style="--rot: \( {l.rot}deg"> \){l.text}</span>`;
+            labelsContainer.appendChild(div);
+        });
+        wheel.appendChild(labelsContainer);
+
+        let isSpinning = false;
+        let currentRotation = 0;
+
+        const options = [
+            { text: 'Да 💚', class: 'yes', angle: 45 },
+            { text: 'Точно да 🔥', class: 'definitely', angle: 135 },
+            { text: 'Нет ❤️', class: 'no', angle: 225 },
+            { text: 'Точно не сегодня 🌙', class: 'not-today', angle: 315 }
+        ];
+
+        spinBtn.addEventListener('click', () => {
+            if (isSpinning) return;
+            isSpinning = true;
+            spinBtn.disabled = true;
+            resultEl.className = 'result';
+            resultEl.textContent = '';
+
+            const randomIndex = Math.floor(Math.random() * options.length);
+            const selected = options[randomIndex];
+
+            const spins = 5 + Math.floor(Math.random() * 3);
+            const targetAngle = 360 * spins + (360 - selected.angle) + (Math.random() * 20 - 10);
+
+            currentRotation += targetAngle;
+            wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+            setTimeout(() => {
+                resultEl.textContent = selected.text;
+                resultEl.className = `result show ${selected.class}`;
+                createConfetti();
+                isSpinning = false;
+                spinBtn.disabled = false;
+            }, 4900);
+        });
+
+        function createConfetti() {
+            const colors = ['#ffd700', '#22c55e', '#f472b6', '#60a5fa', '#fbbf24', '#a78bfa'];
+            for (let i = 0; i < 45; i++) {
+                const conf = document.createElement('div');
+                conf.className = 'confetti';
+                conf.style.left = Math.random() * 100 + 'vw';
+                conf.style.background = colors[Math.floor(Math.random() * colors.length)];
+                conf.style.width = (6 + Math.random() * 8) + 'px';
+                conf.style.height = (6 + Math.random() * 8) + 'px';
+                conf.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                conf.style.animationDelay = (Math.random() * 0.4) + 's';
+                conf.style.animationDuration = (2.2 + Math.random() * 1.2) + 's';
+                document.body.appendChild(conf);
+                setTimeout(() => conf.remove(), 3500);
+            }
+        }
+    })();
+    </script>
+
+</body>
+</html>
