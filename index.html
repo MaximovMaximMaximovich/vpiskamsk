@@ -149,7 +149,7 @@
             padding: 8px 18px;
             border-radius: 50px;
             font-size: 0.9rem;
-            margin-bottom: 22px;
+            margin-bottom: 18px;
             color: #e8e8e8;
         }
 
@@ -167,46 +167,45 @@
             50% { opacity: 0.55; transform: scale(0.82); }
         }
 
-        /* ===== ЖИВАЯ ЛЕНТА ===== */
+        /* ===== ЖИВАЯ ЛЕНТА (усиленная) ===== */
         .live-feed {
-            max-width: 480px;
+            max-width: 520px;
             margin: 0 auto 36px;
-            background: rgba(0,0,0,0.42);
-            border: 1px solid rgba(255,215,0,0.15);
+            background: rgba(0,0,0,0.45);
+            border: 1px solid rgba(255,215,0,0.16);
             border-radius: 16px;
-            padding: 14px 18px;
+            padding: 15px 20px;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             overflow: hidden;
-            height: 52px;
+            height: 54px;
             position: relative;
         }
 
         .live-feed-item {
             position: absolute;
-            left: 18px;
-            right: 18px;
+            left: 20px;
+            right: 20px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 0.92rem;
+            font-size: 0.93rem;
             opacity: 0;
-            transition: opacity 0.6s ease;
+            transition: opacity 0.55s ease;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            color: #e5e5e5;
+            color: #e8e8e8;
         }
 
         .live-feed-item.active {
             opacity: 1;
         }
 
-        .live-feed-item span {
-            color: var(--gold);
-            font-weight: 500;
+        .live-feed-item .nick {
+            color: #ffd700;
+            font-weight: 600;
         }
 
-        /* ===== ГЛАВНАЯ КАРТИНКА ===== */
         .main-image {
             width: 100%;
             max-width: 840px;
@@ -326,7 +325,6 @@
             line-height: 1.45;
         }
 
-        /* ===== ПРАВИЛА ===== */
         .rules-section {
             max-width: 640px;
             margin: 50px auto 50px;
@@ -383,7 +381,6 @@
             font-weight: 700;
         }
 
-        /* ===== КОЛЕСО ===== */
         .wheel-section {
             margin: 65px 0 55px;
             text-align: center;
@@ -629,7 +626,8 @@
             .wheel-wrapper { width: 250px; height: 250px; }
             .wheel-label span { transform: rotate(var(--r)) translateY(-88px); font-size: 0.88rem; }
             .wheel-center { width: 58px; height: 58px; font-size: 1.2rem; }
-            .live-feed { height: 48px; font-size: 0.88rem; }
+            .live-feed { height: 50px; }
+            .live-feed-item { font-size: 0.87rem; }
         }
     </style>
 </head>
@@ -647,16 +645,24 @@
             <span>Сейчас в чате активно</span>
         </div>
 
-        <!-- ЖИВАЯ ЛЕНТА -->
+        <!-- УСИЛЕННАЯ ЖИВАЯ ЛЕНТА -->
         <div class="live-feed fade-up delay-2" id="liveFeed">
-            <div class="live-feed-item active">Парень, 27, центр — ищет компанию на вечер</div>
-            <div class="live-feed-item">Девушка, 24, юг — свободна сегодня</div>
-            <div class="live-feed-item">Пара, 25–28 — зовут в компанию</div>
-            <div class="live-feed-item">Парень, 31, САО — кто на движ?</div>
-            <div class="live-feed-item">Девушка, 26, центр — ищу интересных людей</div>
-            <div class="live-feed-item">Парень, 29, ЗАО — собираю компанию</div>
-            <div class="live-feed-item">Девушка, 23, СВАО — свободна после 21:00</div>
-            <div class="live-feed-item">Парень, 33, юг — ищу адекватную компанию</div>
+            <div class="live-feed-item active"><span class="nick">Макс</span> · центр — ищу компанию на вечер</div>
+            <div class="live-feed-item"><span class="nick">Аня</span> · юг — свободна сегодня</div>
+            <div class="live-feed-item"><span class="nick">Кирилл</span> · САО — кто на движ?</div>
+            <div class="live-feed-item"><span class="nick">Катя</span> · центр — ищу интересных людей</div>
+            <div class="live-feed-item"><span class="nick">Дима</span> · ЗАО — собираю компанию</div>
+            <div class="live-feed-item"><span class="nick">Лена</span> · СВАО — свободна после 21:00</div>
+            <div class="live-feed-item"><span class="nick">Артём</span> · юг — ищу адекватную компанию</div>
+            <div class="live-feed-item"><span class="nick">Маша</span> · центр — кто свободен вечером?</div>
+            <div class="live-feed-item"><span class="nick">Никита</span> · восток — готов выходить</div>
+            <div class="live-feed-item"><span class="nick">Юля</span> · СЗАО — ищу компанию на сегодня</div>
+            <div class="live-feed-item"><span class="nick">Иван</span> · центр — есть место ещё для двоих</div>
+            <div class="live-feed-item"><span class="nick">Даша</span> · юг — свободна, пишите</div>
+            <div class="live-feed-item"><span class="nick">Сергей</span> · САО — собираемся, кто с нами?</div>
+            <div class="live-feed-item"><span class="nick">Алина</span> · запад — ищу людей на вечер</div>
+            <div class="live-feed-item"><span class="nick">Егор</span> · центр — кто сегодня без планов?</div>
+            <div class="live-feed-item"><span class="nick">Вика</span> · СВАО — готова присоединиться</div>
         </div>
 
         <div class="main-image fade-up delay-3">
@@ -705,7 +711,6 @@
             </div>
         </div>
 
-        <!-- ===== ПРАВИЛА ===== -->
         <div class="rules-section fade-up">
             <h2>Важные правила</h2>
             
@@ -720,7 +725,6 @@
             </ul>
         </div>
 
-        <!-- ===== КОЛЕСО ===== -->
         <section class="wheel-section fade-up">
             <h2 class="section-title">Стоит ли сегодня?</h2>
             <p class="wheel-subtitle">Крутани колесо и узнай свой вердикт 🔥</p>
@@ -762,7 +766,7 @@
     </script>
 
     <script>
-    // ===== Живая лента =====
+    // Живая лента
     (function() {
         const items = document.querySelectorAll('.live-feed-item');
         let current = 0;
@@ -771,10 +775,10 @@
             items[current].classList.remove('active');
             current = (current + 1) % items.length;
             items[current].classList.add('active');
-        }, 4200);
+        }, 4500);
     })();
 
-    // ===== Колесо =====
+    // Колесо
     (function() {
         const wheel = document.getElementById('wheel');
         const spinBtn = document.getElementById('spinBtn');
