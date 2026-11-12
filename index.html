@@ -149,7 +149,7 @@
             padding: 8px 18px;
             border-radius: 50px;
             font-size: 0.9rem;
-            margin-bottom: 30px;
+            margin-bottom: 22px;
             color: #e8e8e8;
         }
 
@@ -167,6 +167,46 @@
             50% { opacity: 0.55; transform: scale(0.82); }
         }
 
+        /* ===== ЖИВАЯ ЛЕНТА ===== */
+        .live-feed {
+            max-width: 480px;
+            margin: 0 auto 36px;
+            background: rgba(0,0,0,0.42);
+            border: 1px solid rgba(255,215,0,0.15);
+            border-radius: 16px;
+            padding: 14px 18px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            overflow: hidden;
+            height: 52px;
+            position: relative;
+        }
+
+        .live-feed-item {
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.92rem;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #e5e5e5;
+        }
+
+        .live-feed-item.active {
+            opacity: 1;
+        }
+
+        .live-feed-item span {
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        /* ===== ГЛАВНАЯ КАРТИНКА ===== */
         .main-image {
             width: 100%;
             max-width: 840px;
@@ -286,6 +326,63 @@
             line-height: 1.45;
         }
 
+        /* ===== ПРАВИЛА ===== */
+        .rules-section {
+            max-width: 640px;
+            margin: 50px auto 50px;
+            background: rgba(0,0,0,0.45);
+            border: 1px solid rgba(255,215,0,0.18);
+            border-radius: 20px;
+            padding: 28px 30px;
+            text-align: left;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .rules-section h2 {
+            font-size: 1.35rem;
+            margin-bottom: 18px;
+            text-align: center;
+            background: linear-gradient(90deg, #fff, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .rules-main {
+            background: rgba(255, 215, 0, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            border-radius: 14px;
+            padding: 16px 18px;
+            margin-bottom: 16px;
+            font-size: 0.98rem;
+            line-height: 1.55;
+        }
+
+        .rules-main strong {
+            color: #ffd700;
+        }
+
+        .rules-list {
+            list-style: none;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .rules-list li {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 10px;
+        }
+
+        .rules-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
         /* ===== КОЛЕСО ===== */
         .wheel-section {
             margin: 65px 0 55px;
@@ -305,7 +402,6 @@
             margin: 0 auto 36px;
         }
 
-        /* Указатель */
         .wheel-pointer {
             position: absolute;
             top: -14px;
@@ -331,12 +427,11 @@
                 0 0 50px rgba(255, 215, 0, 0.18),
                 inset 0 0 40px rgba(0,0,0,0.45);
             transition: transform 5.2s cubic-bezier(0.12, 0.8, 0.25, 1);
-            /* Сегменты начинаются сверху (0deg) */
             background: conic-gradient(
-                #1a7a4c 0deg 90deg,      /* Да */
-                #b8962e 90deg 180deg,    /* Точно да */
-                #8b2e3a 180deg 270deg,   /* Нет */
-                #3b2d6b 270deg 360deg    /* Точно не сегодня */
+                #1a7a4c 0deg 90deg,
+                #b8962e 90deg 180deg,
+                #8b2e3a 180deg 270deg,
+                #3b2d6b 270deg 360deg
             );
         }
 
@@ -522,10 +617,11 @@
             .main-image img { height: 260px; }
             .btn { flex: 1 1 100%; }
             .live-status { font-size: 0.85rem; }
-            .live-status, .description, .step {
+            .live-status, .description, .step, .rules-section, .live-feed {
                 backdrop-filter: none;
                 -webkit-backdrop-filter: none;
             }
+            .rules-section { padding: 22px 18px; }
         }
 
         @media (max-width: 480px) {
@@ -533,6 +629,7 @@
             .wheel-wrapper { width: 250px; height: 250px; }
             .wheel-label span { transform: rotate(var(--r)) translateY(-88px); font-size: 0.88rem; }
             .wheel-center { width: 58px; height: 58px; font-size: 1.2rem; }
+            .live-feed { height: 48px; font-size: 0.88rem; }
         }
     </style>
 </head>
@@ -548,6 +645,18 @@
         <div class="live-status fade-up delay-2">
             <span class="live-dot"></span>
             <span>Сейчас в чате активно</span>
+        </div>
+
+        <!-- ЖИВАЯ ЛЕНТА -->
+        <div class="live-feed fade-up delay-2" id="liveFeed">
+            <div class="live-feed-item active">Парень, 27, центр — ищет компанию на вечер</div>
+            <div class="live-feed-item">Девушка, 24, юг — свободна сегодня</div>
+            <div class="live-feed-item">Пара, 25–28 — зовут в компанию</div>
+            <div class="live-feed-item">Парень, 31, САО — кто на движ?</div>
+            <div class="live-feed-item">Девушка, 26, центр — ищу интересных людей</div>
+            <div class="live-feed-item">Парень, 29, ЗАО — собираю компанию</div>
+            <div class="live-feed-item">Девушка, 23, СВАО — свободна после 21:00</div>
+            <div class="live-feed-item">Парень, 33, юг — ищу адекватную компанию</div>
         </div>
 
         <div class="main-image fade-up delay-3">
@@ -596,6 +705,21 @@
             </div>
         </div>
 
+        <!-- ===== ПРАВИЛА ===== -->
+        <div class="rules-section fade-up">
+            <h2>Важные правила</h2>
+            
+            <div class="rules-main">
+                <strong>Главное правило:</strong> Мы боремся с ботами и мошенниками. Поэтому после подачи заявки <strong>возможна небольшая проверка</strong>. Она быстрая и полностью конфиденциальная. Это нужно, чтобы в чате оставались только реальные люди.
+            </div>
+
+            <ul class="rules-list">
+                <li>Уважаем друг друга</li>
+                <li>Без рекламы и коммерции</li>
+                <li>Только реальные встречи</li>
+            </ul>
+        </div>
+
         <!-- ===== КОЛЕСО ===== -->
         <section class="wheel-section fade-up">
             <h2 class="section-title">Стоит ли сегодня?</h2>
@@ -605,7 +729,6 @@
                 <div class="wheel-pointer"></div>
                 
                 <div class="wheel" id="wheel">
-                    <!-- Центры сегментов: 45°, 135°, 225°, 315° -->
                     <div class="wheel-label" style="--r: 45deg"><span>Да</span></div>
                     <div class="wheel-label" style="--r: 135deg"><span>Точно да</span></div>
                     <div class="wheel-label" style="--r: 225deg"><span>Нет</span></div>
@@ -639,6 +762,19 @@
     </script>
 
     <script>
+    // ===== Живая лента =====
+    (function() {
+        const items = document.querySelectorAll('.live-feed-item');
+        let current = 0;
+
+        setInterval(() => {
+            items[current].classList.remove('active');
+            current = (current + 1) % items.length;
+            items[current].classList.add('active');
+        }, 4200);
+    })();
+
+    // ===== Колесо =====
     (function() {
         const wheel = document.getElementById('wheel');
         const spinBtn = document.getElementById('spinBtn');
@@ -647,8 +783,6 @@
         let isSpinning = false;
         let currentRotation = 0;
 
-        // Центры сегментов (в градусах от верха)
-        // Чтобы сегмент оказался под указателем сверху, нужно повернуть на (360 - center)
         const options = [
             { text: 'Да 💚',           class: 'yes',        center: 45,  confetti: true },
             { text: 'Точно да 🔥',     class: 'definitely', center: 135, confetti: true },
@@ -665,8 +799,8 @@
 
             const selected = options[Math.floor(Math.random() * options.length)];
 
-            const spins = 6 + Math.floor(Math.random() * 3); // 6–8 полных оборотов
-            const extra = (Math.random() * 16) - 8;          // небольшое случайное смещение
+            const spins = 6 + Math.floor(Math.random() * 3);
+            const extra = (Math.random() * 16) - 8;
             const targetAngle = 360 * spins + (360 - selected.center) + extra;
 
             currentRotation += targetAngle;
